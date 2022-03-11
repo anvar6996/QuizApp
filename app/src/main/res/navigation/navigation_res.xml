@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_res"
+    app:startDestination="@id/menuScreen">
+
+    <fragment
+        android:id="@+id/menuScreen"
+        tools:layout="@layout/screen_menu"
+        android:name="uz.usoft.quizapp.presentation.screens.MenuScreen"
+        android:label="MenuScreen" >
+        <action
+            android:id="@+id/action_menuScreen_to_questionScreen"
+            app:destination="@id/questionScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionScreen"
+        tools:layout="@layout/screen_question"
+        android:name="uz.usoft.quizapp.presentation.screens.QuestionScreen"
+        android:label="QuestionScreen" />
+    <fragment
+        tools:layout="@layout/screen_splash"
+        android:id="@+id/splashScreen"
+        android:name="uz.usoft.quizapp.presentation.screens.SplashScreen"
+        android:label="SplashScreen" >
+        <action
+            android:id="@+id/action_splashScreen_to_menuScreen"
+            app:destination="@id/menuScreen" />
+    </fragment>
+</navigation>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="realWhite">#FFFFFFFF</color>
+    <color name="realBlack">#000000</color>
+    <color name="questionsBg">#f5f5f1</color>
+    <color name="answersBg">#c6c2c5</color>
+    <color name="answersLineBg">#e8dfe1</color>
+
+
+    <color name="doubleChanse">#005e73</color>
+    <color name="fiftyFifty">#0a9295</color>
+    <color name="reversoContext">#ca6702</color>
+    <color name="nextQuestions">#ba3e03</color>
+    <color name="playColor">#f7951d</color>
+
+
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable-v24/bg_answer.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable-v24/bg_answer_line.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable-v24/bg_fifty_fifty.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable-v24/bg_next_question.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable-v24/bg_white.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable-v24/play)bt.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_answer_line.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_double_chanse.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_fifty_fifty.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_next_question.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_questions.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_true_questions.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/ic_chat.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/ic_double_arrow.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/ic_play_track.xml" value="0.222" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/item_questions.xml" value="0.301631540491961" />
+        <entry key="app/src/main/res/layout/screen_map_leveles.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/screen_menu.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/screen_question.xml" value="0.36054572506227356" />
+        <entry key="app/src/main/res/layout/screen_splash.xml" value="0.22056159420289856" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
