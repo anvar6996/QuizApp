@@ -1,9 +1,9 @@
 package uz.usoft.quizapp.app
 
 import android.app.Application
-import com.example.quizapp.BuildConfig
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
+import uz.usoft.quizapp.BuildConfig
 
 
 @HiltAndroidApp

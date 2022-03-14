@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.39410095214843754" />
         <entry key="app/src/main/res/drawable-v24/bg_answer.xml" value="0.222" />
         <entry key="app/src/main/res/drawable-v24/bg_answer_line.xml" value="0.222" />
         <entry key="app/src/main/res/drawable-v24/bg_fifty_fifty.xml" value="0.222" />
@@ -12,15 +13,21 @@
         <entry key="app/src/main/res/drawable/bg_answer_line.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/bg_double_chanse.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/bg_fifty_fifty.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_level.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/bg_next_question.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/bg_questions.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/bg_true_questions.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/ic__path_.xml" value="0.2025" />
+        <entry key="app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/ic_chat.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/ic_double_arrow.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/ic_play_track.xml" value="0.222" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/item_category.xml" value="0.26132246376811596" />
+        <entry key="app/src/main/res/layout/item_lelvel.xml" value="0.29345740719117974" />
         <entry key="app/src/main/res/layout/item_questions.xml" value="0.301631540491961" />
-        <entry key="app/src/main/res/layout/screen_map_leveles.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/screen_level_category.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/screen_map_leveles.xml" value="0.11759033203125001" />
         <entry key="app/src/main/res/layout/screen_menu.xml" value="0.22056159420289856" />
         <entry key="app/src/main/res/layout/screen_question.xml" value="0.36054572506227356" />
         <entry key="app/src/main/res/layout/screen_splash.xml" value="0.22056159420289856" />

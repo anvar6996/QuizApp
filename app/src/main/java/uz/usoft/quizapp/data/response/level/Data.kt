@@ -1,10 +1,10 @@
 package uz.usoft.quizapp.data.response.level
 
-data class LevelResponseItem(
+data class Data(
     val answers: List<Answer>,
     val category: Category,
     val description: Description,
     val id: Int,
-    val images: List<Image>,
+    val photos: List<Photo>,
     val title: Title
 )

@@ -1,6 +1,6 @@
 package uz.usoft.quizapp.data.response.level
 
-data class Image(
+data class Photo(
     val id: Int,
     val path: String,
     val type: String

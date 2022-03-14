@@ -2,12 +2,12 @@ package uz.usoft.quizapp.utils
 
 import android.content.Context
 import com.example.express24task.data.pref.MyPref
-import com.example.quizapp.BuildConfig
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import timber.log.Timber
+import uz.usoft.quizapp.BuildConfig
 
 fun OkHttpClient.Builder.addLoggingInterceptor(context: Context): OkHttpClient.Builder {
     HttpLoggingInterceptor.Level.HEADERS

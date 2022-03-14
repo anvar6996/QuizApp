@@ -2,7 +2,6 @@ package uz.usoft.quizapp.data.di
 
 import android.content.Context
 import com.example.express24task.data.pref.MyPref
-import com.example.quizapp.BuildConfig.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,6 +10,7 @@ import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import uz.usoft.quizapp.BuildConfig.BASE_URL
 import uz.usoft.quizapp.utils.addHeaderInterceptor
 import uz.usoft.quizapp.utils.addLoggingInterceptor
 import java.util.concurrent.TimeUnit
@@ -35,6 +35,6 @@ class NetworkModule {
             .addLoggingInterceptor(context)
             .readTimeout(60, TimeUnit.SECONDS)
             .writeTimeout(60, TimeUnit.SECONDS)
-            .addInterceptor(addHeaderInterceptor(pref))
+//            .addInterceptor(addHeaderInterceptor(pref))
             .build()
 }
