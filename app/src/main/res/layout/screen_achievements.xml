@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fiftyFifty">
+
+    <ImageView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintHeight_percent="0.9"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_width="match_parent"
+        android:src="@drawable/bg_gray_light"
+        android:layout_height="0dp"/>
+
+    <ImageView
+        android:id="@+id/center_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_achivements_center"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/topBg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_achivement_top"
+        app:layout_constraintHeight_percent="0.115"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_vector_back"
+        app:layout_constraintBottom_toBottomOf="@id/topBg"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Достижения"
+        android:textColor="@color/doubleChanse"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="@id/topBg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topBg" />
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/circle"
+        app:civ_border_color="@color/realBlack"
+        app:layout_constraintBottom_toBottomOf="@id/center_bg"
+        app:layout_constraintLeft_toLeftOf="@id/center_bg"
+        app:layout_constraintTop_toTopOf="@id/center_bg" />
+
+    <TextView
+        android:id="@+id/nameText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="Иван Иванов"
+        android:textColor="@color/realWhite"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@id/usernameText"
+        app:layout_constraintLeft_toRightOf="@id/profile_image"
+        app:layout_constraintTop_toTopOf="@id/profile_image" />
+
+    <TextView
+        android:id="@+id/usernameText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="#username"
+        android:textColor="@color/realWhite"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@id/gmail"
+        app:layout_constraintLeft_toRightOf="@id/profile_image"
+        app:layout_constraintTop_toBottomOf="@id/nameText" />
+
+    <TextView
+        android:id="@+id/gmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="username@gmail.com"
+        android:textColor="@color/realWhite"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/profile_image"
+        app:layout_constraintLeft_toRightOf="@id/profile_image"
+        app:layout_constraintTop_toBottomOf="@id/usernameText" />
+
+
+    <ImageView
+        android:id="@+id/level"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_lelvel_font"
+        app:layout_constraintBottom_toBottomOf="@id/profile_image"
+        app:layout_constraintLeft_toRightOf="@id/gmail"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/profile_image" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score"
+        android:textColor="@color/realWhite"
+        app:layout_constraintBottom_toBottomOf="@id/center_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/view1"
+        app:layout_constraintTop_toBottomOf="@id/profile_image" />
+
+
+    <TextView
+        android:id="@+id/coins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="coins"
+        android:textColor="@color/realWhite"
+        app:layout_constraintLeft_toRightOf="@id/view1"
+        app:layout_constraintRight_toLeftOf="@id/view2"
+        app:layout_constraintTop_toTopOf="@id/score" />
+
+
+    <TextView
+        android:id="@+id/overQuestions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Questions"
+        android:textColor="@color/realWhite"
+        app:layout_constraintLeft_toRightOf="@id/view2"
+        app:layout_constraintRight_toLeftOf="@id/view3"
+        app:layout_constraintTop_toTopOf="@id/score" />
+
+    <TextView
+        android:id="@+id/combo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="combo"
+        android:textColor="@color/realWhite"
+        app:layout_constraintLeft_toRightOf="@id/view3"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/score" />
+
+    <View
+        android:id="@+id/view1"
+        android:layout_width="5dp"
+        android:layout_height="?actionBarSize"
+        android:background="@color/realWhite"
+        app:layout_constraintBottom_toBottomOf="@id/scoreText"
+        app:layout_constraintLeft_toRightOf="@id/score"
+        app:layout_constraintRight_toLeftOf="@id/coins"
+        app:layout_constraintTop_toTopOf="@id/score" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="5dp"
+        android:layout_height="?actionBarSize"
+        android:background="@color/realWhite"
+        app:layout_constraintBottom_toBottomOf="@id/view1"
+        app:layout_constraintLeft_toRightOf="@id/coins"
+        app:layout_constraintRight_toLeftOf="@id/overQuestions"
+        app:layout_constraintTop_toTopOf="@id/view1" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="5dp"
+        android:layout_height="?actionBarSize"
+        android:background="@color/realWhite"
+        app:layout_constraintBottom_toBottomOf="@id/view1"
+        app:layout_constraintLeft_toRightOf="@id/overQuestions"
+        app:layout_constraintRight_toLeftOf="@id/combo"
+        app:layout_constraintTop_toTopOf="@id/view1" />
+
+
+    <TextView
+        android:id="@+id/scoreText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:text="12 345"
+        android:textColor="@color/realWhite"
+        android:textSize="17sp"
+        app:layout_constraintLeft_toLeftOf="@id/score"
+        app:layout_constraintRight_toRightOf="@id/score"
+        app:layout_constraintTop_toBottomOf="@id/score" />
+
+
+    <TextView
+        android:id="@+id/coinsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="300"
+        android:textColor="@color/realWhite"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/center_bg"
+        app:layout_constraintLeft_toLeftOf="@id/coins"
+        app:layout_constraintRight_toRightOf="@id/coins"
+        app:layout_constraintTop_toTopOf="@id/score" />
+
+
+    <TextView
+        android:id="@+id/overQuestionsText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="56"
+        android:textColor="@color/realWhite"
+        app:layout_constraintBottom_toBottomOf="@id/center_bg"
+        app:layout_constraintLeft_toLeftOf="@id/overQuestions"
+        app:layout_constraintRight_toRightOf="@id/overQuestions"
+        app:layout_constraintTop_toBottomOf="@id/overQuestions" />
+
+    <TextView
+        android:id="@+id/comboText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="14"
+        android:textColor="@color/realWhite"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/center_bg"
+        app:layout_constraintLeft_toLeftOf="@id/combo"
+        app:layout_constraintRight_toRightOf="@id/combo"
+        app:layout_constraintTop_toBottomOf="@id/combo" />
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,21 +1,12 @@
 package uz.usoft.quizapp.presentation.cutomview
 
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.*
-import android.graphics.drawable.shapes.Shape
 import android.util.AttributeSet
-import android.view.Gravity.apply
 import android.view.View
-import androidx.core.graphics.drawable.toBitmap
-import androidx.core.view.GravityCompat.apply
-import com.tozny.crypto.android.AesCbcWithIntegrity.PrngFixes.apply
-import uz.usoft.quizapp.R
-import kotlin.math.sign
-import kotlin.math.sin
-import kotlin.math.sqrt
+import java.lang.StrictMath.sqrt
 
 
 class DashCustomView @JvmOverloads constructor(
@@ -46,7 +37,7 @@ class DashCustomView @JvmOverloads constructor(
         this.isLinearText = true
 //        this.flags=11000
 //        this.strokeMiter=0f
-        color=Color.TRANSPARENT
+        color = Color.TRANSPARENT
         this.isStrikeThruText = true
         this.style = Paint.Style.STROKE
         strokeWidth = lineWith
@@ -60,29 +51,32 @@ class DashCustomView @JvmOverloads constructor(
 
     @SuppressLint("ResourceAsColor")
     private fun paintLines(canvas: Canvas) {
-        var x1=0.0
+        var x1 = 0.0
         var helper=5
-        var y1=0.0
-        for (i in 0 until getScreenWidth()) {
-//            var y = 16*sqrt(i.toDouble())+70f
-            val y = i*i/100
+        var y1 = 0.0
+        paint.color = Color.RED
+
+        for (i in 0 until getScreenHeight()) {
+//            var y = 16*sqrt(i.toDouble())
+            val j = getScreenWidth() - i
             val x = i
+            val y = i*Math.sqrt((i).toDouble())/10
             if(helper<=5)
             {
-                paint.color = Color.RED
-                canvas.drawLine(x1.toFloat(), y1.toFloat(), x.toFloat(), y.toFloat(), paint)
+//                canvas.drawLine(x1.toFloat(), y1.toFloat(), x.toFloat(), y.toFloat(), paint)
+            canvas.drawLine(x1.toFloat(), y1.toFloat(), x.toFloat(), y.toFloat(), paint)
             }
             if (helper==10)
-            {
+//            {
                 helper=0
-            }
+
             else {
                 paint.color = Color.RED
                 canvas.drawLine(x1.toFloat(), y1.toFloat(), x.toFloat(), y.toFloat(), paintB)
             }
             helper++
-            y1= y.toDouble()
-            x1= x.toDouble()
+            y1 = y.toDouble()
+            x1 = x.toDouble()
         }
     }
 

@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.usoft.quizapp.data.domain.repository.QuestionsRepository
-import uz.usoft.quizapp.data.response.level.LevelResponse
+import uz.usoft.quizapp.data.response.category.CategoryResponse
 import uz.usoft.quizapp.presentation.viewmodels.questions.QuestionsScreenViewModel
 import uz.usoft.quizapp.utils.eventValueFlow
 import uz.usoft.quizapp.utils.isConnected
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class QuestionsScreenViewModelImpl @Inject constructor(private val repository: QuestionsRepository) : ViewModel(),QuestionsScreenViewModel{
     override val errorFlow = eventValueFlow<String>()
-    override val successFlow = eventValueFlow<LevelResponse>()
+    override val successFlow = eventValueFlow<CategoryResponse>()
     override val progressFlow = eventValueFlow<Boolean>()
 
     override fun getQuestions(id:String) {

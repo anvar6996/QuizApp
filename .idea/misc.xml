@@ -3,33 +3,69 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="../../../../layout/custom_preview.xml" value="0.39410095214843754" />
+        <entry key="../../../../layout/custom_preview.xml" value="0.2912152099609373" />
         <entry key="app/src/main/res/drawable-v24/bg_answer.xml" value="0.222" />
         <entry key="app/src/main/res/drawable-v24/bg_answer_line.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable-v24/bg_blue_green_cornets.xml" value="0.1905" />
         <entry key="app/src/main/res/drawable-v24/bg_fifty_fifty.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable-v24/bg_gray_light.xml" value="0.268" />
         <entry key="app/src/main/res/drawable-v24/bg_next_question.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable-v24/bg_shop_center.xml" value="0.1905" />
+        <entry key="app/src/main/res/drawable-v24/bg_stroke_progressbar.xml" value="0.268" />
         <entry key="app/src/main/res/drawable-v24/bg_white.xml" value="0.222" />
         <entry key="app/src/main/res/drawable-v24/play)bt.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_achivement_top.xml" value="0.1805" />
+        <entry key="app/src/main/res/drawable/bg_achivements_center.xml" value="0.1905" />
+        <entry key="app/src/main/res/drawable/bg_achivements_centr.xml" value="0.1805" />
+        <entry key="app/src/main/res/drawable/bg_answer.xml" value="0.1805" />
+        <entry key="app/src/main/res/drawable/bg_answer_correct.xml" value="0.1805" />
+        <entry key="app/src/main/res/drawable/bg_answer_false.xml" value="0.1805" />
         <entry key="app/src/main/res/drawable/bg_answer_line.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_correct_answer.xml" value="0.2685" />
         <entry key="app/src/main/res/drawable/bg_double_chanse.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/bg_fifty_fifty.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_gradient_progress.xml" value="0.268" />
         <entry key="app/src/main/res/drawable/bg_level.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/bg_next_question.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/bg_questions.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_stars.xml" value="0.1805" />
         <entry key="app/src/main/res/drawable/bg_true_questions.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/bg_white.xml" value="0.1905" />
+        <entry key="app/src/main/res/drawable/circle.xml" value="0.1805" />
+        <entry key="app/src/main/res/drawable/circle_animation.xml" value="0.1825" />
+        <entry key="app/src/main/res/drawable/custom_stroke.xml" value="0.2605" />
         <entry key="app/src/main/res/drawable/ic__path_.xml" value="0.2025" />
+        <entry key="app/src/main/res/drawable/ic__stroke_.xml" value="0.2605" />
+        <entry key="app/src/main/res/drawable/ic__stroke_1.xml" value="0.2605" />
         <entry key="app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.199" />
         <entry key="app/src/main/res/drawable/ic_chat.xml" value="0.222" />
         <entry key="app/src/main/res/drawable/ic_double_arrow.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/ic_history.xml" value="0.268" />
+        <entry key="app/src/main/res/drawable/ic_lelvel_font.xml" value="0.268" />
+        <entry key="app/src/main/res/drawable/ic_lenguage.xml" value="0.268" />
+        <entry key="app/src/main/res/drawable/ic_line_1.xml" value="0.2605" />
+        <entry key="app/src/main/res/drawable/ic_line_3.xml" value="0.2605" />
+        <entry key="app/src/main/res/drawable/ic_line_4.xml" value="0.2605" />
         <entry key="app/src/main/res/drawable/ic_play_track.xml" value="0.222" />
+        <entry key="app/src/main/res/drawable/ic_sport.xml" value="0.268" />
+        <entry key="app/src/main/res/drawable/ic_strars.xml" value="0.1805" />
+        <entry key="app/src/main/res/drawable/ic_vector__stroke_.xml" value="0.2605" />
+        <entry key="app/src/main/res/drawable/ic_vector_back.xml" value="0.1805" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.22056159420289856" />
+        <entry key="app/src/main/res/layout/item.xml" value="0.3890625" />
+        <entry key="app/src/main/res/layout/item_achivements.xml" value="0.22282608695652173" />
+        <entry key="app/src/main/res/layout/item_answers.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/item_category.xml" value="0.26132246376811596" />
-        <entry key="app/src/main/res/layout/item_lelvel.xml" value="0.29345740719117974" />
+        <entry key="app/src/main/res/layout/item_lelvel.xml" value="0.4648624364880548" />
         <entry key="app/src/main/res/layout/item_questions.xml" value="0.301631540491961" />
+        <entry key="app/src/main/res/layout/item_shop_search.xml" value="0.31875" />
+        <entry key="app/src/main/res/layout/screen_achievements.xml" value="0.22982228597005205" />
         <entry key="app/src/main/res/layout/screen_level_category.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/screen_load.xml" value="0.3527699788411458" />
         <entry key="app/src/main/res/layout/screen_map_leveles.xml" value="0.11759033203125001" />
         <entry key="app/src/main/res/layout/screen_menu.xml" value="0.22056159420289856" />
-        <entry key="app/src/main/res/layout/screen_question.xml" value="0.36054572506227356" />
+        <entry key="app/src/main/res/layout/screen_question.xml" value="0.28973121090211734" />
+        <entry key="app/src/main/res/layout/screen_shop.xml" value="0.31875" />
         <entry key="app/src/main/res/layout/screen_splash.xml" value="0.22056159420289856" />
       </map>
     </option>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/realBlack">
+
+
+    <ImageView
+        android:id="@+id/second_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_blue_green_corners"
+        app:layout_constraintHeight_percent="0.24"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/topBg"
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_white"
+        app:layout_constraintHeight_percent="0.18"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_strars"
+        android:gravity="center"
+        android:text="17 "
+        android:textColor="@color/realWhite"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/second_bg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBg" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:textSize="27sp"
+        android:text="жизнь"
+        android:textColor="@color/shopTextColor"
+        android:layout_margin="15dp"
+        app:layout_constraintBottom_toBottomOf="@id/topBg"
+        app:layout_constraintLeft_toLeftOf="@id/topBg"
+        android:layout_height="wrap_content"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

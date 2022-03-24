@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
+
+    <ImageView
+        android:id="@+id/bg_answer_line"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/bg_answer_line"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/answerCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_answer"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text=" 1 "
+        android:textColor="@color/realBlack"
+        android:textSize="22dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/answerText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="15dp"
+        android:gravity="center|left"
+        android:text="asdasduausdjuasjduajsd"
+        android:textColor="@color/realBlack"
+        android:textSize="22dp"
+        app:layout_constraintBottom_toBottomOf="@id/answerCount"
+        app:layout_constraintLeft_toRightOf="@id/answerCount"
+        app:layout_constraintRight_toRightOf="@id/bg_answer_line"
+        app:layout_constraintTop_toTopOf="@id/answerCount" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

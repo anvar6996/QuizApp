@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation_res"
-    app:startDestination="@id/menuScreen">
+    app:startDestination="@id/mapLevelsScreen">
 
     <fragment
         android:id="@+id/menuScreen"
@@ -32,10 +32,12 @@
        tools:layout="@layout/screen_map_leveles"
         android:id="@+id/mapLevelsScreen"
         android:name="uz.usoft.quizapp.presentation.screens.MapLevelsScreen"
-        android:label="MapLevelsScreen" >
+        android:label="MapLevelsScreen">
         <action
             android:id="@+id/action_mapLevelsScreen_to_categoryScreen"
-            app:destination="@id/categoryScreen" />
+            app:destination="@id/categoryScreen"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim" />
     </fragment>
     <fragment
         tools:layout="@layout/screen_level_category"
@@ -46,4 +48,11 @@
             android:id="@+id/action_categoryScreen_to_questionScreen"
             app:destination="@id/questionScreen" />
     </fragment>
+    <fragment
+        tools:layout="@layout/screen_achievements"
+        android:id="@+id/achivementsScreen"
+        android:name="uz.usoft.quizapp.presentation.screens.AchivementsScreen"
+        android:label="AchivementsScreen" />
+
+
 </navigation>

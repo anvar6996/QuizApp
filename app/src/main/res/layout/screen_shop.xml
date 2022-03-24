@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/realBlack">
+
+    <ImageView
+        android:id="@+id/center_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@color/shopRedColor"
+        app:layout_constraintHeight_percent="0.4"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/topBg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:background="@drawable/bg_achivement_top"
+        app:layout_constraintHeight_percent="0.1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/shop"
+        android:textColor="@color/shopTextColor"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/topBg"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/topBg" />
+
+
+    <TextView
+        android:id="@+id/startsCount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/bg_white"
+        android:drawableStart="@drawable/ic_strars"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="  1234  "
+        android:textColor="@color/realBlack"
+        android:textSize="17sp"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/time"
+        app:layout_constraintTop_toBottomOf="@id/topBg" />
+
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="67dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:background="@drawable/bg_white"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="  5 ч. "
+        android:textColor="@color/realBlack"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toBottomOf="@id/startsCount"
+        app:layout_constraintLeft_toRightOf="@id/startsCount"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/startsCount" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        android:src="@drawable/ic_shop_reklam"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBg" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

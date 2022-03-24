@@ -10,14 +10,23 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import uz.usoft.quizapp.R
-import uz.usoft.quizapp.data.response.level.Data
+import uz.usoft.quizapp.data.response.category.Data
 import uz.usoft.quizapp.databinding.ItemCategoryBinding
 import uz.usoft.quizapp.utils.scope
 
 
 class CategoryQuestionsAdapter :
     ListAdapter<Data, CategoryQuestionsAdapter.HistoryVH>(MyDifUtils) {
-    private var itemListener: ((Int) -> Unit)? = null
+    private var itemListener: ((Data) -> Unit)? = null
+    var Arr1 = arrayOf(
+        0, 1, 1, 1, 0,
+        0, 1, 0, 1, 0,
+        1, 1, 1, 1, 1,
+        1, 0, 0, 0, 1,
+        1, 1, 1, 1, 1,
+        0, 1, 0, 1, 0,
+        0, 1, 1, 1, 0
+    )
 
     object MyDifUtils : DiffUtil.ItemCallback<Data>() {
         override fun areItemsTheSame(
@@ -41,16 +50,22 @@ class CategoryQuestionsAdapter :
 
         init {
             itemView.setOnClickListener {
-                itemListener?.invoke(absoluteAdapterPosition)
+                itemListener?.invoke(getItem(absoluteAdapterPosition))
             }
         }
 
         fun load() = bind.scope {
             val value = getItem(absoluteAdapterPosition) as Data
+
+//            if (value.stateShow == 1) {
             Glide.with(imageCategory.context)
-                .load(value.category.photo)
+                .load(value.category?.photo)
                 .override(300, 200)
                 .into(imageCategory)
+//                bind.imageCategory.visibility = View.VISIBLE
+//            } else {
+//                bind.imageCategory.visibility = View.INVISIBLE
+//            }
         }
     }
 
@@ -65,7 +80,7 @@ class CategoryQuestionsAdapter :
         )
 
 
-    fun setListener(f: (Int) -> Unit) {
+    fun setListener(f: (Data) -> Unit) {
         itemListener = f
     }
 

@@ -1,4 +1,4 @@
-package uz.usoft.quizapp.data.response.level
+package uz.usoft.quizapp.data.response.category
 
 data class Category(
     val id: Int,

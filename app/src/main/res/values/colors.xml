@@ -21,6 +21,12 @@
     <color name="reversoContext">#ca6702</color>
     <color name="nextQuestions">#ba3e03</color>
     <color name="playColor">#f7951d</color>
+    <color name="shopTextColor">#89110B</color>
+    <color name="shopRedColor">#F94144</color>
+
+    <color name="redFalse">#FF0000</color>
+    <color name="green">#0BD300</color>
+    <color name="loadTextColor">#0BD300</color>
 
 
 </resources>

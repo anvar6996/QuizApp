@@ -1,4 +1,4 @@
-package uz.usoft.quizapp.data.response.level
+package uz.usoft.quizapp.data.response.category
 
 data class AnswerX(
     val en: String,

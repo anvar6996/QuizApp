@@ -2,14 +2,17 @@ package uz.usoft.quizapp.presentation.screens
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Adapter
+import android.view.animation.AccelerateDecelerateInterpolator
+import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.usoft.quizapp.R
@@ -20,6 +23,7 @@ import uz.usoft.quizapp.presentation.viewmodels.questions.MapLevelsScreenViewMod
 import uz.usoft.quizapp.presentation.viewmodelsimpl.questions.MapLevelsScreenViewModelImpl
 import uz.usoft.quizapp.utils.scope
 import uz.usoft.quizapp.utils.showToast
+
 
 @AndroidEntryPoint
 class MapLevelsScreen : Fragment(R.layout.screen_map_leveles) {
@@ -39,36 +43,40 @@ class MapLevelsScreen : Fragment(R.layout.screen_map_leveles) {
         linearLayoutManager.reverseLayout = true
         linearLayoutManager.stackFromEnd = true
         recyklerView.layoutManager = linearLayoutManager
+        val animation =
+            AnimationUtils.loadAnimation(requireContext(), R.anim.circle_exploin_animation)
+                .apply {
+                    duration = 700
+                    interpolator=AccelerateDecelerateInterpolator()
+                }
         maplevelsAdapter.setListener {
             val bundle = Bundle()
             bundle.putString("id", it.toString())
+           bind.recyklerView.startAnimation(animation)
             findNavController().navigate(R.id.action_mapLevelsScreen_to_categoryScreen, bundle)
+
         }
 
-        maplevelsAdapter.submitList(list)
         viewModel.errorFlow.onEach {
             showToast(it)
         }.launchIn(lifecycleScope)
+
         viewModel.progressFlow.onEach {
-            if(it)
-            {
-                bind.progress.show()
-            }else
-            {
+            if (it) {
+                circleLoad.visibility=View.VISIBLE
+                circleLoad.playAnimation()
+            } else {
+                delay(3000)
                 progress.hide()
+                circleLoad.visibility=View.GONE
             }
         }.launchIn(lifecycleScope)
         viewModel.successFlow.onEach {
-            showToast(it.size.toString())
             maplevelsAdapter.submitList(it)
+            recyklerView.scrollToPosition(1)
         }.launchIn(lifecycleScope)
 
 
     }
 
-    private fun load() {
-        for (i in 0 until 10) {
-            list.add(MapLevelsResponseItem(i, "1", true))
-        }
-    }
 }
