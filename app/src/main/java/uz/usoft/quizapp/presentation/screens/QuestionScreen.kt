@@ -24,7 +24,6 @@ import uz.usoft.quizapp.databinding.ScreenQuestionBinding
 import uz.usoft.quizapp.presentation.viewmodels.questions.QuestionsScreenViewModel
 import uz.usoft.quizapp.presentation.viewmodelsimpl.questions.QuestionsScreenViewModelImpl
 import uz.usoft.quizapp.utils.scope
-import uz.usoft.quizapp.utils.showToast
 import kotlin.random.Random
 
 
@@ -41,11 +40,11 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
         loadReward()
         arguments?.let {
             val value = it.getSerializable("value") as Data
-            showToast(value.toString())
+//            showToast(value.toString())
             val data = value
             questionText.text = data.description?.ru
             Glide.with(questionsImage.context)
-                .load(value.photos)
+                .load(value.photos!![0].path)
                 .override(300, 200)
                 .into(questionsImage)
             bind.answerText1.text = value.answers[0].answer.ru

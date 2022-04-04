@@ -20,11 +20,14 @@ data class Data(
     fun reformatToQuestionData(): QuestionAnswers {
         return QuestionAnswers(
             QuestionData(
-                id!!, category!!.reformatToCategoryDate(), description!!.reformatToQuestionDate(),
-                title!!.createQuestionTitleData(), stateShow
+                id!!,
+                category!!.reformatToCategoryDate(),
+                description!!.reformatToQuestionDate(),
+                title!!.createQuestionTitleData(),
+                stateShow
             ),
             createListAnswers(),
-            createListPhotos(),
+            createListPhotos(), id, id
         )
     }
 

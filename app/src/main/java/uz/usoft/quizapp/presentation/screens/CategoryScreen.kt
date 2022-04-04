@@ -75,14 +75,15 @@ class CategoryScreen : Fragment(R.layout.screen_level_category) {
         }.launchIn(lifecycleScope)
 
         viewModel.successFlow.onEach {
-            adapterCategory.submitList(it.data)
+//            showToast(it.size.toString())
+            adapterCategory.submitList(it)
         }.launchIn(lifecycleScope)
 
         adapterCategory.setListener {
-//            val bundle = Bundle()
-//            bundle.putSerializable("value", it)
+            val bundle = Bundle()
+            bundle.putSerializable("value", it)
             showToast(it.answers.toString())
-//            findNavController().navigate(R.id.action_drawerCategoryScreen_to_questionScreen, bundle)
+            findNavController().navigate(R.id.action_drawerCategoryScreen_to_questionScreen, bundle)
         }
     }
 

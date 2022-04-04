@@ -89,13 +89,13 @@ class DrawerCategoryScreen : Fragment(R.layout.screen_drawer) {
         }.launchIn(lifecycleScope)
 
         viewModel.successFlow.onEach {
-            adapterCategory.submitList(it.data)
+            adapterCategory.submitList(it)
         }.launchIn(lifecycleScope)
 
         adapterCategory.setListener {
             val bundle = Bundle()
             bundle.putSerializable("value", it)
-            findNavController().navigate(R.id.action_drawerCategoryScreen_to_questionScreen, bundle)
+            findNavController().navigate(R.id.action_drawerCategoryScreen_to_questionScreen,bundle)
         }
     }
 

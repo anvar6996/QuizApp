@@ -10,14 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import uz.usoft.quizapp.R
-import uz.usoft.quizapp.data.response.category.Data
+import uz.usoft.quizapp.data.roomdata.entity.QuestionData
+import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 import uz.usoft.quizapp.databinding.ItemCategoryBinding
 import uz.usoft.quizapp.utils.scope
 
 
 class CategoryQuestionsAdapter :
-    ListAdapter<Data, CategoryQuestionsAdapter.HistoryVH>(MyDifUtils) {
-    private var itemListener: ((Data) -> Unit)? = null
+    ListAdapter<QuestionAnswers, CategoryQuestionsAdapter.HistoryVH>(MyDifUtils) {
+    private var itemListener: ((QuestionAnswers) -> Unit)? = null
     var Arr1 = arrayOf(
         0, 1, 1, 1, 0,
         0, 1, 0, 1, 0,
@@ -28,18 +29,18 @@ class CategoryQuestionsAdapter :
         0, 1, 1, 1, 0
     )
 
-    object MyDifUtils : DiffUtil.ItemCallback<Data>() {
+    object MyDifUtils : DiffUtil.ItemCallback<QuestionAnswers>() {
         override fun areItemsTheSame(
-            oldItem: Data,
-            newItem: Data
+            oldItem: QuestionAnswers,
+            newItem: QuestionAnswers
         ): Boolean {
             return oldItem == newItem
         }
 
         @SuppressLint("DiffUtilEquals")
         override fun areContentsTheSame(
-            oldItem: Data,
-            newItem: Data
+            oldItem: QuestionAnswers,
+            newItem: QuestionAnswers
         ): Boolean {
             return oldItem == newItem
         }
@@ -50,7 +51,7 @@ class CategoryQuestionsAdapter :
 
         init {
             itemView.setOnClickListener {
-//                val value = getItem(absoluteAdapterPosition) as _root_ide_package_.uz.usoft.quizapp.data.roomdata.realationdata.Data
+//                val value = getItem(absoluteAdapterPosition) as _root_ide_package_.uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 //                if (value.stateShow == 1) {
                 itemListener?.invoke(getItem(absoluteAdapterPosition))
 //                }
@@ -59,11 +60,11 @@ class CategoryQuestionsAdapter :
         }
 
         fun load() = bind.scope {
-            val value = getItem(absoluteAdapterPosition) as Data
+            val value = getItem(absoluteAdapterPosition) as QuestionAnswers
 
 //            if (value.stateShow == 1) {
             Glide.with(imageCategory.context)
-                .load(value.photos?.get(1)?.path)
+                .load(value.questionData.category.photo)
                 .override(300, 200)
                 .into(imageCategory)
             bind.imageCategory.visibility = View.VISIBLE
@@ -84,7 +85,7 @@ class CategoryQuestionsAdapter :
         )
 
 
-    fun setListener(f: (Data) -> Unit) {
+    fun setListener(f: (QuestionAnswers) -> Unit) {
         itemListener = f
     }
 

@@ -1,8 +1,6 @@
 package uz.usoft.quizapp.data.roomdata.entity
 
 import androidx.room.*
-import com.google.gson.Gson
-import java.io.Serializable
 
 @Entity(tableName = "questions")
 data class QuestionData(

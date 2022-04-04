@@ -13,7 +13,6 @@ data class QuestionAnswers(
     @Relation(
         parentColumn = "questionDataId",
         entityColumn = "parentQuestionId"
-
     )
     val answers: List<AnswerData>,
     @Relation(
@@ -21,4 +20,6 @@ data class QuestionAnswers(
         entityColumn = "photoParentId"
     )
     val photos: List<PhotoData>?,
-) : Serializable
+    val parentQuestionId: Int,
+    val photoParentId: Int
+)

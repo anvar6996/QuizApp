@@ -25,16 +25,4 @@ abstract class AppBase() : RoomDatabase() {
 
     abstract fun getDao(): TaskDao
 
-
-//    companion object {
-//        private lateinit var baza: AppBase
-//
-//        fun getSingle(): AppBase {
-//            if (!Companion::baza.isInitialized) {
-//                baza = Room.databaseBuilder(App.instance, AppBase::class.java, "To do")
-//                    .allowMainThreadQueries().build()
-//            }
-//            return baza
-//        }
-//    }
 }

@@ -9,7 +9,6 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.usoft.quizapp.data.domain.repository.QuestionsRepository
-import uz.usoft.quizapp.data.response.category.CategoryResponse
 import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 import uz.usoft.quizapp.presentation.viewmodels.questions.QuestionsScreenViewModel
 import uz.usoft.quizapp.utils.eventValueFlow
@@ -20,7 +19,7 @@ import javax.inject.Inject
 class QuestionsScreenViewModelImpl @Inject constructor(private val repository: QuestionsRepository) :
     ViewModel(), QuestionsScreenViewModel {
     override val errorFlow = eventValueFlow<String>()
-    override val successFlow = eventValueFlow<CategoryResponse>()
+    override val successFlow = eventValueFlow<List<QuestionAnswers>>()
     override val progressFlow = eventValueFlow<Boolean>()
     override val liveDataScreenClose = MutableLiveData<Unit>()
 

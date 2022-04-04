@@ -23,14 +23,15 @@ class QuestionsRepositoryImpl @Inject constructor(
 ) :
     QuestionsRepository {
     private var mapLevelsResponse: MapLevelsResponse? = null
-    private var categoryResponse: CategoryResponse? = null
 
 
-    override fun getLevel(id: String): Flow<Result<CategoryResponse>> = flow {
+    override fun getLevel(id: String): Flow<Result<List<QuestionAnswers>>> = flow {
         pref.level = id.toInt()
         val responce = api.getLevel(id)
+        dao.deleteTask()
         if (responce.isSuccessful) {
-            emit(Result.success<CategoryResponse>(responce.body()!!))
+            val list = responce.body()!!.createQuestionData()
+            emit(Result.success<List<QuestionAnswers>>(list))
         } else {
             emit(Result.failure(Throwable(responce.errorBody().toString())))
         }
@@ -39,7 +40,7 @@ class QuestionsRepositoryImpl @Inject constructor(
         emit(Result.failure(errorMessage))
     }.flowOn(Dispatchers.Unconfined)
 
-//    override fun getLevelForBase(): Flow<Result<CategoryResponse>> = flow {
+//    override fun getLevelForBase(): Flow<Result<List<QuestionAnswers>>> = flow {
 //        emit(Result.success<List<QuestionAnswers>>(dao.getAll()))
 //    }.catch {
 //        val errorMessage = Throwable(this.toString())
@@ -47,10 +48,10 @@ class QuestionsRepositoryImpl @Inject constructor(
 //    }.flowOn(Dispatchers.Unconfined)
 
 
-    override fun getPlay(): Flow<Result<CategoryResponse>> = flow {
+    override fun getPlay(): Flow<Result<List<QuestionAnswers>>> = flow {
         val responce = api.getLevel(pref.level.toString())
         if (responce.isSuccessful) {
-            emit(Result.success<CategoryResponse>(responce.body()!!))
+            emit(Result.success<List<QuestionAnswers>>(dao.getAll()))
         } else {
             emit(Result.failure(Throwable(responce.errorBody().toString())))
         }

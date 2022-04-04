@@ -8,8 +8,8 @@ import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 
 interface QuestionsRepository {
 
-    fun getLevel(id: String): Flow<Result<CategoryResponse>>
-    fun getPlay(): Flow<Result<CategoryResponse>>
+    fun getLevel(id: String): Flow<Result<List<QuestionAnswers>>>
+    fun getPlay(): Flow<Result<List<QuestionAnswers>>>
     fun getLevelQuestions(): Flow<Result<MapLevelsResponse>>
 //    fun setPassed(): Flow<Unit>
 //    fun getPassed(): Flow<Result<String>>

@@ -19,7 +19,7 @@ class CategoryScreenViewModelImpl @Inject constructor(private val useCaseImpl: C
     ViewModel(),
     CategoryScreenViewModel {
     override val errorFlow = eventValueFlow<String>()
-    override val successFlow = eventValueFlow<CategoryResponse>()
+    override val successFlow = eventValueFlow<List<QuestionAnswers>>()
     override val progressFlow = eventValueFlow<Boolean>()
 
     override fun getQuestions(id: String) {

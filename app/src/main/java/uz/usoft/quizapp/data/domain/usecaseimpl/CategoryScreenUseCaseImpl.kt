@@ -14,7 +14,7 @@ class CategoryScreenUseCaseImpl @Inject constructor(
 ) :
     CategoryScreenUseCase {
 
-    override fun getLevel(id: String): Flow<Result<CategoryResponse>> {
+    override fun getLevel(id: String): Flow<Result<List<QuestionAnswers>>> {
 //        if (pref.level == id.toInt()) {
 //            return repository.getLevelForBase()
 //        } else {
@@ -22,5 +22,5 @@ class CategoryScreenUseCaseImpl @Inject constructor(
 //        }
     }
 
-    override fun getPlay(): Flow<Result<CategoryResponse>> = repository.getPlay()
+    override fun getPlay(): Flow<Result<List<QuestionAnswers>>> = repository.getPlay()
 }

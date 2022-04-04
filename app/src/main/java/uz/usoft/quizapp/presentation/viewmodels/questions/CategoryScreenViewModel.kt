@@ -6,7 +6,7 @@ import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 
 interface CategoryScreenViewModel {
     val errorFlow: Flow<String>
-    val successFlow: Flow<CategoryResponse>
+    val successFlow: Flow<List<QuestionAnswers>>
     val progressFlow: Flow<Boolean>
 
     fun getQuestions(id: String)

@@ -58,6 +58,7 @@ class MyPref @Inject constructor(private val context: Context) {
         }
         get() = pref.getString("access_token", "")!!
 
+
     var startScreen: Boolean
         set(value) {
             pref.edit().putBoolean("startScreen", value).apply()
