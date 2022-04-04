@@ -6,11 +6,9 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
-import uz.usoft.quizapp.data.domain.repository.QuestionsRepository
 import uz.usoft.quizapp.data.domain.usecase.CategoryScreenUseCase
-import uz.usoft.quizapp.data.domain.usecaseimpl.CategoryScreenUseCaseImpl
 import uz.usoft.quizapp.data.response.category.CategoryResponse
-import uz.usoft.quizapp.data.response.category.Data
+import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 import uz.usoft.quizapp.presentation.viewmodels.questions.CategoryScreenViewModel
 import uz.usoft.quizapp.utils.eventValueFlow
 import uz.usoft.quizapp.utils.isConnected
@@ -37,7 +35,7 @@ class CategoryScreenViewModelImpl @Inject constructor(private val useCaseImpl: C
         useCaseImpl.getLevel(id).onEach {
             it.onSuccess {
                 progressFlow.emit(false)
-                successFlow.emit(reformatResponse(it))
+                successFlow.emit(it)
             }
             it.onFailure { throwable ->
                 progressFlow.emit(false)
@@ -46,43 +44,50 @@ class CategoryScreenViewModelImpl @Inject constructor(private val useCaseImpl: C
         }.launchIn(viewModelScope)
     }
 
-    fun reformatResponse(array: CategoryResponse): CategoryResponse {
-        var count = 5
-        var helper = 0
-        var counter = 5
-        val list = ArrayList<Data>()
-        for (i in 0 until array.data.size * 2) {
-            if (count == 0) {
-                count = 5
-                counter--
+    override fun getPlay() {
+        if (!isConnected()) {
+            viewModelScope.launch {
+                errorFlow.emit("Internet bilan muammo bo'ldi")
             }
-            if (counter > 0 && helper<array.data.size) {
-                val value = array.data[helper]
-                list.add(getValue(value))
-                helper++
-            } else {
-                list.add(getValueNull())
-            }
-            count--
+            return
         }
-        return CategoryResponse(list)
+        viewModelScope.launch {
+            progressFlow.emit(true)
+        }
+        useCaseImpl.getPlay().onEach { result ->
+            result.onSuccess {
+                progressFlow.emit(false)
+                successFlow.emit(it)
+            }
+            result.onFailure { throwable ->
+                progressFlow.emit(false)
+                errorFlow.emit(throwable.message.toString())
+            }
+        }.launchIn(viewModelScope)
     }
 
 
-    private fun getValue(data: Data): Data {
-        return Data(
-            data.answers,
-            data.category,
-            data.description,
-            data.id,
-            data.photos,
-            data.title,
-            1
-        )
-    }
+//    fun reformatResponse(array: CategoryResponse): CategoryResponse {
+//        var count = 5
+//        var helper = 0
+//        var counter = 5
+//        val list = ArrayList<Data>()
+//        for (i in 0 until array.data.size * 2) {
+//            if (count == 0) {
+//                count = 5
+//                counter--
+//            }
+//            if (counter > 0 && helper < array.data.size) {
+//                val value = array.data[helper]
+//                list.add(getValue(value))
+//                helper++
+//            } else {
+//                list.add(getValueNull())
+//            }
+//            count--
+//        }
+//        return CategoryResponse(list)
+//    }
 
-    private fun getValueNull(): Data {
-        return Data(emptyList(), null, null, null, null, null, 0)
-    }
 
 }

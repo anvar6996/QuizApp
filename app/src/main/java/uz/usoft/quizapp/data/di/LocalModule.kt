@@ -1,7 +1,7 @@
 package uz.usoft.quizapp.data.di
 
 import android.content.Context
-import com.example.express24task.data.pref.MyPref
+import uz.usoft.quizapp.data.pref.MyPref
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

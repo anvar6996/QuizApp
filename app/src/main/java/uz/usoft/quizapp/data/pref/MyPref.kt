@@ -1,4 +1,4 @@
-package com.example.express24task.data.pref
+package uz.usoft.quizapp.data.pref
 
 import android.content.Context
 import javax.inject.Inject
@@ -14,6 +14,26 @@ class MyPref @Inject constructor(private val context: Context) {
             pref.edit().putString("phone", value).apply()
         }
         get() = pref.getString("phone", "")!!
+
+
+    var starsCount: Int
+        set(value) {
+            pref.edit().putInt("starsCount", value).apply()
+        }
+        get() = pref.getInt("starsCount", 0)
+
+    var level: Int
+        set(value) {
+            pref.edit().putInt("level", value).apply()
+        }
+        get() = pref.getInt("level", 1)
+
+
+    var contrellBase: Boolean
+        set(value) {
+            pref.edit().putBoolean("contrellBase", value).apply()
+        }
+        get() = pref.getBoolean("contrellBase", false)
 
     var authControll: Boolean
         set(value) {
@@ -44,4 +64,9 @@ class MyPref @Inject constructor(private val context: Context) {
         }
         get() = pref.getBoolean("startScreen", false)
 
+    var passed: String
+        set(value) {
+            pref.edit().putString("passed", value).apply()
+        }
+        get() = pref.getString("passed", "")!!
 }

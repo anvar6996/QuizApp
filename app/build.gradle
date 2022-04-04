@@ -18,7 +18,7 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
-        buildConfigField('String', 'BASE_URL', '"http://185.51.247.41:9000/v1/questions/"')
+        buildConfigField('String', 'BASE_URL', '"http://185.51.247.41:9001/v1/questions/"')
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
@@ -66,7 +66,6 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
 
 //    implementation 'com.google.android.gms:play-services-cast-framework:21.0.1'
-
 
 
 /**
@@ -154,4 +153,41 @@ dependencies {
      * LottieAnimations
      * */
     implementation "com.airbnb.android:lottie:3.4.2"
+
+
+    /**
+     * Material ProgressBar
+     * */
+    implementation "com.github.skydoves:progressview:1.1.3"
+
+
+    /**
+     * Android room
+     * */
+
+    implementation "androidx.room:room-runtime:2.4.2"
+    kapt 'androidx.room:room-compiler:2.4.2'
+//    // To use Kotlin annotation processing tool (kapt)
+//    kapt("androidx.room:room-compiler:2.4.2")
+//    // To use Kotlin Symbolic Processing (KSP)
+//    ksp("androidx.room:room-compiler:2.4.2")
+
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:2.4.2")
+    // optional - Paging 3 Integration
+    implementation("androidx.room:room-paging:2.5.0-alpha01")
+
+
+    //Text animations
+
+//    def htextview_version = "0.1.2"
+// as 3.0 use implementation
+//    implementation "com.hanks:htextview-base:$htextview_version"        // base library
+//    implementation "com.hanks:htextview-fall:$htextview_version"        // optional
+//    implementation "com.hanks:htextview-fade:$htextview_version"        // optional
+//    implementation "com.hanks:htextview-line:$htextview_version"        // optional
+//    implementation "com.hanks:htextview-rainbow:$htextview_version"     // optional
+//    implementation "com.hanks:htextview-typer:$htextview_version"       // optional
+//    implementation "com.hanks:htextview-scale:$htextview_version"       // optional
+//    implementation "com.hanks:htextview-evaporate:$htextview_version" // base library
 }

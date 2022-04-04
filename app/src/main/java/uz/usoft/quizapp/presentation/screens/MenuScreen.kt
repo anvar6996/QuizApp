@@ -17,7 +17,21 @@ class MenuScreen : Fragment(R.layout.screen_menu) {
         super.onViewCreated(view, savedInstanceState)
 
         bind.play.setOnClickListener {
+            val bundle = Bundle()
+            bundle.putString("id", "play")
+            findNavController().navigate(R.id.action_menuScreen_to_drawerCategoryScreen,bundle)
+        }
+
+        bind.mapLevels.setOnClickListener {
             findNavController().navigate(R.id.action_menuScreen_to_mapLevelsScreen)
+        }
+
+        bind.achivement.setOnClickListener {
+            findNavController().navigate(R.id.action_menuScreen_to_achivementsScreen)
+        }
+
+        bind.shop.setOnClickListener {
+            findNavController().navigate(R.id.action_menuScreen_to_shopScreen)
         }
     }
 }

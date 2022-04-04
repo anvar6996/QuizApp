@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/shopMenu"
+            android:icon="@drawable/ic_math"
+            android:title="@string/shop" />
+        <item
+            android:id="@+id/achivementMenu"
+            android:icon="@drawable/ic_game"
+            android:title="@string/achivements" />
+    </group>
+</menu>

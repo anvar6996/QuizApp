@@ -1,7 +1,10 @@
 package uz.usoft.quizapp.presentation.screens
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +15,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.usoft.quizapp.R
+import uz.usoft.quizapp.data.response.category.CategoryResponse
+import uz.usoft.quizapp.data.response.category.Data
 import uz.usoft.quizapp.databinding.ScreenLevelCategoryBinding
 import uz.usoft.quizapp.presentation.adapters.levels.CategoryQuestionsAdapter
 import uz.usoft.quizapp.presentation.viewmodels.questions.CategoryScreenViewModel
@@ -29,7 +34,11 @@ class CategoryScreen : Fragment(R.layout.screen_level_category) {
         super.onViewCreated(view, savedInstanceState)
         arguments?.let {
             val id = it.getString("id")
-            viewModel.getQuestions(id.toString())
+            if (id == "play") {
+                viewModel.getPlay()
+            } else {
+                viewModel.getQuestions(id.toString())
+            }
         }
 
 
@@ -52,7 +61,6 @@ class CategoryScreen : Fragment(R.layout.screen_level_category) {
                 }
             } else {
 //                delay(3000)
-
                 getGone().let { gone ->
                     screenLoad.commentText.visibility = gone
                     screenLoad.connextText.visibility = gone
@@ -65,18 +73,16 @@ class CategoryScreen : Fragment(R.layout.screen_level_category) {
         viewModel.errorFlow.onEach {
             showToast(it)
         }.launchIn(lifecycleScope)
-        viewModel.progressFlow.onEach {
 
-        }.launchIn(lifecycleScope)
         viewModel.successFlow.onEach {
-            showToast(it.data.size.toString())
             adapterCategory.submitList(it.data)
         }.launchIn(lifecycleScope)
 
         adapterCategory.setListener {
-            val bundle = Bundle()
-            bundle.putSerializable("value", it)
-            findNavController().navigate(R.id.action_categoryScreen_to_questionScreen, bundle)
+//            val bundle = Bundle()
+//            bundle.putSerializable("value", it)
+            showToast(it.answers.toString())
+//            findNavController().navigate(R.id.action_drawerCategoryScreen_to_questionScreen, bundle)
         }
     }
 

@@ -1,7 +1,7 @@
 package uz.usoft.quizapp.utils
 
 import android.content.Context
-import com.example.express24task.data.pref.MyPref
+import uz.usoft.quizapp.data.pref.MyPref
 import com.readystatesoftware.chuck.ChuckInterceptor
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

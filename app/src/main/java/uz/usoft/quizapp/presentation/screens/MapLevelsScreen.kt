@@ -47,13 +47,16 @@ class MapLevelsScreen : Fragment(R.layout.screen_map_leveles) {
             AnimationUtils.loadAnimation(requireContext(), R.anim.circle_exploin_animation)
                 .apply {
                     duration = 700
-                    interpolator=AccelerateDecelerateInterpolator()
+                    interpolator = AccelerateDecelerateInterpolator()
                 }
         maplevelsAdapter.setListener {
             val bundle = Bundle()
             bundle.putString("id", it.toString())
-           bind.recyklerView.startAnimation(animation)
-            findNavController().navigate(R.id.action_mapLevelsScreen_to_categoryScreen, bundle)
+            bind.recyklerView.startAnimation(animation)
+            findNavController().navigate(
+                R.id.action_mapLevelsScreen_to_drawerCategoryScreen,
+                bundle
+            )
 
         }
 
@@ -63,12 +66,12 @@ class MapLevelsScreen : Fragment(R.layout.screen_map_leveles) {
 
         viewModel.progressFlow.onEach {
             if (it) {
-                circleLoad.visibility=View.VISIBLE
+                circleLoad.visibility = View.VISIBLE
                 circleLoad.playAnimation()
             } else {
                 delay(3000)
                 progress.hide()
-                circleLoad.visibility=View.GONE
+                circleLoad.visibility = View.GONE
             }
         }.launchIn(lifecycleScope)
         viewModel.successFlow.onEach {

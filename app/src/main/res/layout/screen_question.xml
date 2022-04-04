@@ -1,348 +1,439 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="15dp"
-        app:cardBackgroundColor="@color/transparent"
-        app:layout_constraintHeight_percent="0.05"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintWidth_percent="0.24">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/bg_stars" />
-
-
-        <TextView
-            android:id="@+id/starsCount"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="8dp"
-            android:drawableStart="@drawable/ic_strars"
-            android:fontFamily="@font/autour_one"
-            android:gravity="center"
-            android:text="1234"
-            android:textColor="@color/realBlack"
-            android:textSize="17sp" />
-
-
-    </androidx.cardview.widget.CardView>
-
-    <ImageView
-        android:id="@+id/questionsImage"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        android:src="@color/realBlack"
-        app:layout_constraintHeight_percent="0.4"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/questionsImage">
+        android:layout_height="match_parent">
 
 
-        <ImageView
-            android:id="@+id/bg_questions"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/bg_questions" />
-
-
-        <net.cachapa.expandablelayout.ExpandableLayout
-            android:id="@+id/expandable_layout"
-            android:layout_width="match_parent"
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
             android:layout_height="0dp"
-            app:el_duration="1000"
-            app:el_expanded="true"
-            app:el_parallax="0.5"
-            app:layout_constraintHeight_percent="0.2"
+            android:layout_marginTop="15dp"
+            android:background="@color/transparent"
+            android:backgroundTint="@color/transparent"
+            app:cardBackgroundColor="@color/transparent"
+            app:cardElevation="2dp"
+            app:layout_constraintHeight_percent="0.035"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@id/bg_questions">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_stars"
+                android:backgroundTint="@color/transparent"
+                android:src="@drawable/bg_stars" />
 
 
             <TextView
-                android:id="@+id/question_text"
+                android:id="@+id/starsCount"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="8dp"
+                android:background="@color/transparent"
+                android:drawableStart="@drawable/ic_strars"
+                android:fontFamily="@font/autour_one"
+                android:gravity="center"
+                android:text="1234"
+                android:textColor="@color/realBlack"
+                android:textSize="17sp" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/questionsImage"
+            android:layout_width="match_parent"
+            android:layout_height="325dp"
+            android:scaleType="centerCrop"
+            android:src="@color/realBlack"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/answersParent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/questionsImage">
+
+            <ImageView
+                android:id="@+id/bg_questions"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/bg_questions"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:fontFamily="@font/arvo"
-                android:text="Какие попугаи живут в \n Америке?"
+                app:el_duration="1000"
+                app:el_expanded="true"
+                app:el_parallax="0.5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/bg_questions">
+
+
+                <TextView
+                    android:id="@+id/question_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:fontFamily="@font/arvo"
+                    android:text="Какие попугаи живут в \n Америке?"
+                    android:textColor="@color/realBlack"
+                    android:textSize="23sp" />
+
+
+            </net.cachapa.expandablelayout.ExpandableLayout>
+
+
+            <ImageView
+                android:id="@+id/bg_answer_line1"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/bg_answer_line"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/expandable_layout" />
+
+
+            <ImageView
+                android:id="@+id/bg_answer_line2"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/bg_answer_line"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bg_answer_line1" />
+
+
+            <ImageView
+                android:id="@+id/bg_answer_line3"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="15dp"
+                android:maxLines="1"
+                android:src="@drawable/bg_answer_line"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bg_answer_line2" />
+
+
+            <ImageView
+                android:id="@+id/bg_answer_line4"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="15dp"
+                android:src="@drawable/bg_answer_line"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bg_answer_line3" />
+
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/progressLine1"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/transparent"
+                android:max="100"
+                android:progressDrawable="@drawable/bg_correct_answer"
+                app:layout_constraintBottom_toBottomOf="@id/bg_answer_line1"
+                app:layout_constraintLeft_toLeftOf="@id/bg_answer_line1"
+                app:layout_constraintRight_toRightOf="@id/bg_answer_line1"
+                app:layout_constraintTop_toTopOf="@id/bg_answer_line1"
+                app:progressView_colorBackground="@color/transparent"
+                app:progressView_colorProgress="@color/green"
+                app:progressView_radius="15dp" />
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/progressLine2"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/transparent"
+                android:max="100"
+                android:progressDrawable="@drawable/bg_correct_answer"
+                app:layout_constraintBottom_toBottomOf="@id/bg_answer_line2"
+                app:layout_constraintLeft_toLeftOf="@id/bg_answer_line2"
+                app:layout_constraintRight_toRightOf="@id/bg_answer_line2"
+                app:layout_constraintTop_toTopOf="@id/bg_answer_line2"
+                app:progressView_colorBackground="@color/transparent"
+                app:progressView_colorProgress="@color/green"
+                app:progressView_radius="15dp" />
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/progressLine3"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/transparent"
+                android:indeterminate="true"
+                android:indeterminateOnly="false"
+                android:max="100"
+                android:progressDrawable="@drawable/bg_correct_answer"
+                app:layout_constraintBottom_toBottomOf="@id/bg_answer_line3"
+                app:layout_constraintLeft_toLeftOf="@id/bg_answer_line3"
+                app:layout_constraintRight_toRightOf="@id/bg_answer_line3"
+                app:layout_constraintTop_toTopOf="@id/bg_answer_line3"
+                app:progressView_colorBackground="@color/transparent"
+                app:progressView_colorProgress="@color/green"
+                app:progressView_radius="15dp" />
+
+            <com.skydoves.progressview.ProgressView
+                android:id="@+id/progressLine4"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@color/transparent"
+                android:max="100"
+                android:progressDrawable="@drawable/bg_correct_answer"
+                app:layout_constraintBottom_toBottomOf="@id/bg_answer_line4"
+                app:layout_constraintLeft_toLeftOf="@id/bg_answer_line4"
+                app:layout_constraintRight_toRightOf="@id/bg_answer_line4"
+                app:layout_constraintTop_toTopOf="@id/bg_answer_line4"
+                app:progressView_colorBackground="@color/transparent"
+                app:progressView_colorProgress="@color/green"
+                app:progressView_highlightColor="@color/transparent"
+                app:progressView_radius="15dp" />
+
+
+            <TextView
+                android:id="@+id/answerCount3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_answer"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="15dp"
+                android:text=" 3 "
                 android:textColor="@color/realBlack"
-                android:textSize="27sp" />
+                android:textSize="22dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/bg_answer_line3"
+                app:layout_constraintLeft_toLeftOf="@id/bg_answer_line3"
+                app:layout_constraintTop_toTopOf="@id/bg_answer_line3" />
 
 
-        </net.cachapa.expandablelayout.ExpandableLayout>
+            <TextView
+                android:id="@+id/answerCount2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_answer"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text=" 2 "
+                android:textColor="@color/realBlack"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/bg_answer_line2"
+                app:layout_constraintLeft_toLeftOf="@id/bg_answer_line2"
+                app:layout_constraintTop_toTopOf="@id/bg_answer_line2" />
+
+            <TextView
+                android:id="@+id/answerText2"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginLeft="15dp"
+                android:gravity="center|left"
+                android:maxLines="1"
+                android:text="asdasduausdjuasjduajsd"
+                android:textColor="@color/realBlack"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@id/answerCount2"
+                app:layout_constraintLeft_toRightOf="@id/answerCount2"
+                app:layout_constraintRight_toRightOf="@id/bg_answer_line2"
+                app:layout_constraintTop_toTopOf="@id/answerCount2" />
+
+            <TextView
+                android:id="@+id/answerText3"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginLeft="15dp"
+                android:gravity="center|left"
+                android:text="asdasduausdjuasjduajsd"
+                android:textColor="@color/realBlack"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@id/answerCount3"
+                app:layout_constraintLeft_toRightOf="@id/answerCount3"
+                app:layout_constraintRight_toRightOf="@id/bg_answer_line3"
+                app:layout_constraintTop_toTopOf="@id/answerCount3" />
+
+            <TextView
+                android:id="@+id/answerCount1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_answer"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text=" 1 "
+                android:textColor="@color/realBlack"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/bg_answer_line1"
+                app:layout_constraintLeft_toLeftOf="@id/bg_answer_line1"
+                app:layout_constraintTop_toTopOf="@id/bg_answer_line1" />
 
 
-        <ImageView
-            android:id="@+id/bg_answer_line1"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_marginHorizontal="10dp"
-            android:src="@drawable/bg_answer_line"
-            app:layout_constraintBottom_toTopOf="@id/bg_answer_line2"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/expandable_layout" />
+            <TextView
+                android:id="@+id/answerText1"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginLeft="15dp"
+                android:gravity="center|left"
+                android:maxLines="1"
+                android:text="asdasduausdjuasjduajsd"
+                android:textColor="@color/realBlack"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@id/answerCount1"
+                app:layout_constraintLeft_toRightOf="@id/answerCount1"
+                app:layout_constraintRight_toRightOf="@id/bg_answer_line1"
+                app:layout_constraintTop_toTopOf="@id/answerCount1" />
 
 
-        <TextView
-            android:id="@+id/answerCount1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_answer"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text=" 1 "
-            android:textColor="@color/realBlack"
-            android:textSize="22dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/bg_answer_line1"
-            app:layout_constraintLeft_toLeftOf="@id/bg_answer_line1"
-            app:layout_constraintTop_toTopOf="@id/bg_answer_line1" />
+            <TextView
+                android:id="@+id/answerCount4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_answer"
+                android:gravity="center"
+                android:padding="15dp"
+                android:text=" 4 "
+                android:textColor="@color/realBlack"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/bg_answer_line4"
+                app:layout_constraintLeft_toLeftOf="@id/bg_answer_line4"
+                app:layout_constraintTop_toTopOf="@id/bg_answer_line4" />
 
 
-        <TextView
-            android:id="@+id/answerText1"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_marginLeft="15dp"
-            android:gravity="center|left"
-            android:maxLines="1"
-            android:text="asdasduausdjuasjduajsd"
-            android:textColor="@color/realBlack"
-            android:textSize="22dp"
-            app:layout_constraintBottom_toBottomOf="@id/answerCount1"
-            app:layout_constraintLeft_toRightOf="@id/answerCount1"
-            app:layout_constraintRight_toRightOf="@id/bg_answer_line1"
-            app:layout_constraintTop_toTopOf="@id/answerCount1" />
+            <TextView
+                android:id="@+id/answerText4"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginLeft="15dp"
+                android:gravity="center|left"
+                android:maxLines="1"
+                android:text="asdasduausdjuasjduajsd"
+                android:textColor="@color/realBlack"
+                android:textSize="22dp"
+                app:layout_constraintBottom_toBottomOf="@id/answerCount4"
+                app:layout_constraintLeft_toRightOf="@id/answerCount4"
+                app:layout_constraintRight_toRightOf="@id/bg_answer_line3"
+                app:layout_constraintTop_toTopOf="@id/answerCount4" />
+
+            <ImageView
+                android:id="@+id/atts"
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="20dp"
+                android:padding="8dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/attributes"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bg_answer_line4" />
+
+            <TextView
+                android:id="@+id/doubleChanse"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/fiftyFifty"
+                app:layout_constraintTop_toBottomOf="@id/bg_answer_line4"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <TextView
+                android:id="@+id/fiftyFifty"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toRightOf="@id/doubleChanse"
+                app:layout_constraintRight_toLeftOf="@id/reverseContext"
+                app:layout_constraintTop_toBottomOf="@id/bg_answer_line4"
+                app:layout_constraintWidth_percent="0.2" />
 
 
-        <ImageView
-            android:id="@+id/bg_answer_line2"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_marginHorizontal="10dp"
-            android:src="@drawable/bg_answer_line"
-            app:layout_constraintBottom_toTopOf="@id/bg_answer_line3"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bg_answer_line1" />
+            <TextView
+                android:id="@+id/reverseContext"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="20dp"
+                app:layout_constraintLeft_toRightOf="@id/fiftyFifty"
+                app:layout_constraintRight_toLeftOf="@id/nextQuestions"
+                app:layout_constraintTop_toBottomOf="@id/bg_answer_line4"
+                app:layout_constraintWidth_percent="0.2" />
+
+            <TextView
+                android:id="@+id/nextQuestions"
+                android:layout_width="0dp"
+                android:layout_height="?actionBarSize"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="5dp"
+                app:layout_constraintLeft_toRightOf="@id/reverseContext"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bg_answer_line4"
+                app:layout_constraintWidth_percent="0.2" />
 
 
-        <TextView
-            android:id="@+id/answerCount2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_answer"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text=" 2 "
-            android:textColor="@color/realBlack"
-            android:textSize="22dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/bg_answer_line2"
-            app:layout_constraintLeft_toLeftOf="@id/bg_answer_line2"
-            app:layout_constraintTop_toTopOf="@id/bg_answer_line2" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-        <TextView
-            android:id="@+id/answerText2"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_marginLeft="15dp"
-            android:gravity="center|left"
-            android:maxLines="1"
-            android:text="asdasduausdjuasjduajsd"
-            android:textColor="@color/realBlack"
-            android:textSize="22dp"
-            app:layout_constraintBottom_toBottomOf="@id/answerCount2"
-            app:layout_constraintLeft_toRightOf="@id/answerCount2"
-            app:layout_constraintRight_toRightOf="@id/bg_answer_line2"
-            app:layout_constraintTop_toTopOf="@id/answerCount2" />
-
-
-        <ImageView
-            android:id="@+id/bg_answer_line3"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_marginHorizontal="10dp"
-            android:maxLines="1"
-            android:src="@drawable/bg_answer_line"
-            app:layout_constraintBottom_toTopOf="@id/bg_answer_line4"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bg_answer_line2" />
-
-
-        <TextView
-            android:id="@+id/answerCount3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_answer"
-            android:gravity="center"
-            android:maxLines="1"
-            android:padding="15dp"
-            android:text=" 3 "
-            android:textColor="@color/realBlack"
-            android:textSize="22dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/bg_answer_line3"
-            app:layout_constraintLeft_toLeftOf="@id/bg_answer_line3"
-            app:layout_constraintTop_toTopOf="@id/bg_answer_line3" />
-
-
-        <TextView
-            android:id="@+id/answerText3"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_marginLeft="15dp"
-            android:gravity="center|left"
-            android:text="asdasduausdjuasjduajsd"
-            android:textColor="@color/realBlack"
-            android:textSize="22dp"
-            app:layout_constraintBottom_toBottomOf="@id/answerCount3"
-            app:layout_constraintLeft_toRightOf="@id/answerCount3"
-            app:layout_constraintRight_toRightOf="@id/bg_answer_line3"
-            app:layout_constraintTop_toTopOf="@id/answerCount3" />
-
-
-        <ImageView
-            android:id="@+id/bg_answer_line4"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_marginHorizontal="10dp"
-            android:src="@drawable/bg_answer_line"
-            app:layout_constraintBottom_toTopOf="@id/atts"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/bg_answer_line3" />
-
-
-        <TextView
-            android:id="@+id/answerCount4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_answer"
-            android:gravity="center"
-            android:padding="15dp"
-            android:text=" 4 "
-            android:textColor="@color/realBlack"
-            android:textSize="22dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="@id/bg_answer_line4"
-            app:layout_constraintLeft_toLeftOf="@id/bg_answer_line4"
-            app:layout_constraintTop_toTopOf="@id/bg_answer_line4" />
-
-
-        <TextView
-            android:id="@+id/answerText4"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_marginLeft="15dp"
-            android:gravity="center|left"
-            android:maxLines="1"
-            android:text="asdasduausdjuasjduajsd"
-            android:textColor="@color/realBlack"
-            android:textSize="22dp"
-            app:layout_constraintBottom_toBottomOf="@id/answerCount4"
-            app:layout_constraintLeft_toRightOf="@id/answerCount4"
-            app:layout_constraintRight_toRightOf="@id/bg_answer_line3"
-            app:layout_constraintTop_toTopOf="@id/answerCount4" />
-
-        <ImageView
-            android:id="@+id/atts"
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/animate"
             android:layout_width="match_parent"
-            android:layout_height="?actionBarSize"
-            android:padding="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/attributes"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent" />
-
-        <TextView
-            android:id="@+id/doubleChanse"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_height="400dp"
+            android:layout_marginRight="200dp"
+            android:layout_marginBottom="100dp"
+            android:background="@color/transparent"
+            android:visibility="invisible"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/fiftyFifty"
-            app:layout_constraintWidth_percent="0.2" />
-
-        <TextView
-            android:id="@+id/fiftyFifty"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/doubleChanse"
-            app:layout_constraintRight_toLeftOf="@id/reverseContext"
-            app:layout_constraintWidth_percent="0.2" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:lottie_rawRes="@raw/stars" />
 
 
-        <TextView
-            android:id="@+id/reverseContext"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/fiftyFifty"
-            app:layout_constraintRight_toLeftOf="@id/nextQuestions"
-            app:layout_constraintWidth_percent="0.2" />
+        <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="67dp"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/5224354917"
+            ads:layout_constraintBottom_toBottomOf="@id/answersParent" />
 
-        <TextView
-            android:id="@+id/nextQuestions"
-            android:layout_width="0dp"
-            android:layout_height="?actionBarSize"
-            android:layout_marginRight="5dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@id/reverseContext"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintWidth_percent="0.2" />
+        <com.airbnb.lottie.LottieAnimationView
+            android:id="@+id/failAnimate"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/answersParent"
+            app:lottie_rawRes="@raw/fail_questions" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/animate"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginRight="200dp"
-        android:layout_marginBottom="100dp"
-        android:background="@color/transparent"
-        android:visibility="invisible"
-        app:lottie_rawRes="@raw/stars" />
-
-
-    <com.google.android.gms.ads.AdView xmlns:ads="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/adView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="67dp"
-        ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/5224354917"
-        ads:layout_constraintBottom_toBottomOf="parent"
-        ads:layout_constraintLeft_toLeftOf="parent"
-        ads:layout_constraintRight_toRightOf="parent" />
-
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/failAnimate"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="gone"
-        app:lottie_rawRes="@raw/fail_questions" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

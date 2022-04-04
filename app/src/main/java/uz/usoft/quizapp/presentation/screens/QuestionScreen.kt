@@ -7,6 +7,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.bumptech.glide.Glide
 import com.google.android.gms.ads.AdError
@@ -19,16 +21,16 @@ import dagger.hilt.android.AndroidEntryPoint
 import uz.usoft.quizapp.R
 import uz.usoft.quizapp.data.response.category.Data
 import uz.usoft.quizapp.databinding.ScreenQuestionBinding
-import uz.usoft.quizapp.presentation.adapters.levels.AnswersAdapter
 import uz.usoft.quizapp.presentation.viewmodels.questions.QuestionsScreenViewModel
 import uz.usoft.quizapp.presentation.viewmodelsimpl.questions.QuestionsScreenViewModelImpl
 import uz.usoft.quizapp.utils.scope
+import uz.usoft.quizapp.utils.showToast
+import kotlin.random.Random
 
 
 @AndroidEntryPoint
 class QuestionScreen : Fragment(R.layout.screen_question) {
     private val bind by viewBinding(ScreenQuestionBinding::bind)
-    private val adapterAnswer = AnswersAdapter()
     private var doubleChanseController = false
     private var countAnswerClick = 0
     private val viewModel: QuestionsScreenViewModel by viewModels<QuestionsScreenViewModelImpl>()
@@ -38,46 +40,52 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
         super.onViewCreated(view, savedInstanceState)
         loadReward()
         arguments?.let {
-            val data = it.getSerializable("value") as Data
-            questionText.setText(data.description?.uz.toString())
-            adapterAnswer.submitList(data.answers)
+            val value = it.getSerializable("value") as Data
+            showToast(value.toString())
+            val data = value
+            questionText.text = data.description?.ru
             Glide.with(questionsImage.context)
-                .load(data.photos?.get(1)?.path)
+                .load(value.photos)
                 .override(300, 200)
                 .into(questionsImage)
-            bind.answerText1.text = data.answers[0].answer.uz
-            bind.answerText2.text = data.answers[1].answer.uz
-            bind.answerText3.text = data.answers[2].answer.uz
-            bind.answerText4.text = data.answers[3].answer.uz
+            bind.answerText1.text = value.answers[0].answer.ru
+            bind.answerText2.text = value.answers[1].answer.ru
+            bind.answerText3.text = value.answers[2].answer.ru
+            bind.answerText4.text = value.answers[3].answer.ru
 
-            bgAnswerLine1.setOnClickListener {
-                answerClick(data.answers[0].correct, bgAnswerLine1, answerCount1, answerText1)
-                searchCorrectAnswer(data)
+            answerText1.setOnClickListener {
+                answerClick(value.answers[0].correct, bgAnswerLine1, answerCount1, answerText1)
+                searchCorrectAnswer(value)
             }
-            bgAnswerLine2.setOnClickListener {
-                answerClick(data.answers[1].correct, bgAnswerLine2, answerCount2, answerText2)
-                searchCorrectAnswer(data)
+            answerText2.setOnClickListener {
+                answerClick(value.answers[1].correct, bgAnswerLine2, answerCount2, answerText2)
+                searchCorrectAnswer(value)
 
             }
 
-            bgAnswerLine3.setOnClickListener {
-                answerClick(data.answers[2].correct, bgAnswerLine3, answerCount3, answerText3)
-                searchCorrectAnswer(data)
+            answerText3.setOnClickListener {
+                answerClick(value.answers[2].correct, bgAnswerLine3, answerCount3, answerText3)
+                searchCorrectAnswer(value)
             }
-            bgAnswerLine4.setOnClickListener {
-                answerClick(data.answers[3].correct, bgAnswerLine4, answerCount4, answerText4)
-                searchCorrectAnswer(data)
+            answerText4.setOnClickListener {
+                answerClick(value.answers[3].correct, bgAnswerLine4, answerCount4, answerText4)
+                searchCorrectAnswer(value)
 
             }
 
             bind.fiftyFifty.setOnClickListener {
-                fiftyFifty(data)
+                fiftyFifty(value)
+            }
+
+            bind.reverseContext.setOnClickListener {
+                correctAnswer(value)
             }
         }
         bind.doubleChanse.setOnClickListener {
             doubleChanse()
         }
 
+        viewModel.liveDataScreenClose.observe(viewLifecycleOwner, screenCloseObserver)
     }
 
     private fun answerClick(
@@ -94,8 +102,10 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
             imageView.setImageResource(R.drawable.bg_answer_correct)
             bind.animate.visibility = View.VISIBLE
             bind.animate.playAnimation()
+
             val value = bind.starsCount.text.toString().toInt()
             loadStars(value, value + 40)
+            viewModel.screenClose("1")
         } else {
             if (!doubleChanseController) {
                 fullScreen()
@@ -116,7 +126,7 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
 
     private fun loadStars(startCount: Int, finalCount: Int) {
         val valueAnimator = ValueAnimator.ofInt(startCount, finalCount)
-        valueAnimator.duration = 1500
+        valueAnimator.duration = 1000
         valueAnimator.addUpdateListener {
             bind.starsCount.text = it.animatedValue.toString()
         }
@@ -175,6 +185,7 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
 
 
     private fun fullScreen() {
+
         mRewardedAd?.fullScreenContentCallback = object : FullScreenContentCallback() {
             override fun onAdShowedFullScreenContent() {
 
@@ -186,6 +197,7 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
 
             override fun onAdDismissedFullScreenContent() {
                 mRewardedAd = null
+                findNavController().popBackStack()
             }
         }
     }
@@ -204,24 +216,38 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
 
                 getInvisible().let {
                     if (i == 0) {
-                        answerText1.visibility = it
-                        answerCount1.visibility = it
-                        bgAnswerLine1.visibility = it
+                        if (bgAnswerLine1.visibility == getVisible()) {
+                            answerText1.visibility = it
+                            answerCount1.visibility = it
+                            bgAnswerLine1.visibility = it
+                            progressLine1.visibility = it
+                        }
                     }
                     if (i == 1) {
-                        answerText2.visibility = it
-                        answerCount2.visibility = it
-                        bgAnswerLine2.visibility = it
+                        if (bgAnswerLine2.visibility == getVisible()) {
+                            answerText2.visibility = it
+                            answerCount2.visibility = it
+                            bgAnswerLine2.visibility = it
+                            progressLine2.visibility = it
+                        }
+
                     }
                     if (i == 2) {
-                        answerText3.visibility = it
-                        answerCount3.visibility = it
-                        bgAnswerLine3.visibility = it
+                        if (bgAnswerLine3.visibility == getVisible()) {
+
+                            progressLine3.visibility = it
+                            answerText3.visibility = it
+                            answerCount3.visibility = it
+                            bgAnswerLine3.visibility = it
+                        }
                     }
                     if (i == 3) {
-                        answerText4.visibility = it
-                        answerCount4.visibility = it
-                        bgAnswerLine4.visibility = it
+                        if (bgAnswerLine4.visibility == getVisible()) {
+                            progressLine4.visibility = it
+                            answerText4.visibility = it
+                            answerCount4.visibility = it
+                            bgAnswerLine4.visibility = it
+                        }
                     }
                 }
                 countFiftyFifty += 1
@@ -231,16 +257,76 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
         }
     }
 
-    private fun correctAnswer() {
+    private fun correctAnswer(data: Data) = bind.scope {
+        for (i in 0 until data.answers.size) {
+            if (!data.answers[i].correct) {
+                val myRandomValues = Random.nextInt(15, 20)
+                getVisible().let { visible ->
+                    getInvisible().let { invisible ->
+
+                        if (i == 0) {
+                            if (progressLine1.visibility != invisible)
+                                progressLine1.visibility = visible
+                            progressLine1.progress = myRandomValues.toFloat()
+                        }
+                        if (i == 1) {
+                            if (progressLine2.visibility != invisible) {
+                                progressLine2.visibility = visible
+                                progressLine2.progress = myRandomValues.toFloat()
+                            }
+                        }
+                        if (i == 2) {
+                            if (progressLine3.visibility != invisible) {
+                                progressLine3.visibility = visible
+                                progressLine3.progress = myRandomValues.toFloat()
+                            }
+                        }
+                        if (i == 3) {
+                            if (progressLine4.visibility != invisible) {
+                                progressLine4.visibility = visible
+                                progressLine4.progress = myRandomValues.toFloat()
+
+                            }
+                        }
+                    }
+
+                }
+
+            }
+            if (data.answers[i].correct) {
+                val myRandomValues = Random.nextInt(40, 99)
+                getVisible().let {
+                    if (i == 0) {
+                        progressLine1.visibility = it
+                        progressLine1.progress = myRandomValues.toFloat()
+                    }
+                    if (i == 1) {
+                        progressLine2.visibility = it
+                        progressLine2.progress = myRandomValues.toFloat()
+                    }
+                    if (i == 2) {
+                        progressLine3.visibility = it
+                        progressLine3.progress = myRandomValues.toFloat()
+                    }
+                    if (i == 3) {
+                        progressLine4.visibility = it
+                        progressLine4.progress = myRandomValues.toFloat()
+                    }
+                }
+            }
+        }
 
     }
 
-    private fun nextQuestions() {
-
-    }
 
     private fun getGone() = View.GONE
     private fun getVisible() = View.VISIBLE
     private fun getInvisible() = View.INVISIBLE
 
+    private val screenCloseObserver = Observer<Unit>
+    {
+        findNavController().popBackStack()
+    }
 }
+
+

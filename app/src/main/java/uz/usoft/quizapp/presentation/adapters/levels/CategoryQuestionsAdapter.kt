@@ -50,7 +50,11 @@ class CategoryQuestionsAdapter :
 
         init {
             itemView.setOnClickListener {
+//                val value = getItem(absoluteAdapterPosition) as _root_ide_package_.uz.usoft.quizapp.data.roomdata.realationdata.Data
+//                if (value.stateShow == 1) {
                 itemListener?.invoke(getItem(absoluteAdapterPosition))
+//                }
+
             }
         }
 
@@ -59,10 +63,10 @@ class CategoryQuestionsAdapter :
 
 //            if (value.stateShow == 1) {
             Glide.with(imageCategory.context)
-                .load(value.category?.photo)
+                .load(value.photos?.get(1)?.path)
                 .override(300, 200)
                 .into(imageCategory)
-//                bind.imageCategory.visibility = View.VISIBLE
+            bind.imageCategory.visibility = View.VISIBLE
 //            } else {
 //                bind.imageCategory.visibility = View.INVISIBLE
 //            }

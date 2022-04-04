@@ -82,7 +82,7 @@ class MapLevelsAdapter :
     private fun getInvisible() = View.INVISIBLE
 
     private fun loadLevel(view: View) {
-        var textLevel=view.findViewById<TextView>(R.id.textLevel)
+        val textLevel=view.findViewById<TextView>(R.id.textLevel)
         val valueAnimator = ValueAnimator.ofInt(0, 75)
         valueAnimator.duration = 500
         valueAnimator.addUpdateListener {
