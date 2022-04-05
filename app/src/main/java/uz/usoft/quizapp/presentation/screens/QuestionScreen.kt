@@ -19,7 +19,8 @@ import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 import uz.usoft.quizapp.R
-import uz.usoft.quizapp.data.response.category.Data
+import uz.usoft.quizapp.data.others.StaticValues
+import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 import uz.usoft.quizapp.databinding.ScreenQuestionBinding
 import uz.usoft.quizapp.presentation.viewmodels.questions.QuestionsScreenViewModel
 import uz.usoft.quizapp.presentation.viewmodelsimpl.questions.QuestionsScreenViewModelImpl
@@ -35,22 +36,24 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
     private val viewModel: QuestionsScreenViewModel by viewModels<QuestionsScreenViewModelImpl>()
     private var mRewardedAd: RewardedAd? = null
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = bind.scope {
         super.onViewCreated(view, savedInstanceState)
-        loadReward()
+//        loadReward()
         arguments?.let {
-            val value = it.getSerializable("value") as Data
+            val value = StaticValues.questionAnswers
+
 //            showToast(value.toString())
-            val data = value
-            questionText.text = data.description?.ru
+            val data = value.questionData
+            questionText.text = data.description.qRu
             Glide.with(questionsImage.context)
-                .load(value.photos!![0].path)
+                .load(value.photos[0].path)
                 .override(300, 200)
                 .into(questionsImage)
-            bind.answerText1.text = value.answers[0].answer.ru
-            bind.answerText2.text = value.answers[1].answer.ru
-            bind.answerText3.text = value.answers[2].answer.ru
-            bind.answerText4.text = value.answers[3].answer.ru
+            bind.answerText1.text = value.answers[0].answerTranslateData.aRu
+            bind.answerText2.text = value.answers[1].answerTranslateData.aRu
+            bind.answerText3.text = value.answers[2].answerTranslateData.aRu
+            bind.answerText4.text = value.answers[3].answerTranslateData.aRu
 
             answerText1.setOnClickListener {
                 answerClick(value.answers[0].correct, bgAnswerLine1, answerCount1, answerText1)
@@ -132,7 +135,7 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
         valueAnimator.start()
     }
 
-    private fun searchCorrectAnswer(data: Data) = bind.scope {
+    private fun searchCorrectAnswer(data: QuestionAnswers) = bind.scope {
         if (doubleChanseController) {
             return@scope
         }
@@ -205,7 +208,7 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
         doubleChanseController = true
     }
 
-    private fun fiftyFifty(data: Data) = bind.scope {
+    private fun fiftyFifty(data: QuestionAnswers) = bind.scope {
         var countFiftyFifty = 0
         for (i in 0 until data.answers.size) {
             if (countFiftyFifty == 2) {
@@ -256,7 +259,7 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
         }
     }
 
-    private fun correctAnswer(data: Data) = bind.scope {
+    private fun correctAnswer(data: QuestionAnswers) = bind.scope {
         for (i in 0 until data.answers.size) {
             if (!data.answers[i].correct) {
                 val myRandomValues = Random.nextInt(15, 20)

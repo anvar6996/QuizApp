@@ -9,6 +9,7 @@ data class Description(
 ) {
     fun reformatToQuestionDate(): QuestionDesciprionData {
         return QuestionDesciprionData(
-            en, ru, uz)
+            en, ru, uz
+        )
     }
 }

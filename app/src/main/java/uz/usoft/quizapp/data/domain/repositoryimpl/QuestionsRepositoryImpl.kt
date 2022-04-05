@@ -31,14 +31,19 @@ class QuestionsRepositoryImpl @Inject constructor(
         dao.deleteTask()
         if (responce.isSuccessful) {
             val list = responce.body()!!.createQuestionData()
-            emit(Result.success<List<QuestionAnswers>>(list))
+            list.forEach {
+                dao.insertQuestionData(it.questionData)
+                dao.insertPhotos(it.photos)
+                dao.insertAnswerData(it.answers)
+            }
+            emit(Result.success<List<QuestionAnswers>>(dao.getAll()))
         } else {
             emit(Result.failure(Throwable(responce.errorBody().toString())))
         }
     }.catch {
         val errorMessage = Throwable(this.toString())
         emit(Result.failure(errorMessage))
-    }.flowOn(Dispatchers.Unconfined)
+    }.flowOn(Dispatchers.IO)
 
 //    override fun getLevelForBase(): Flow<Result<List<QuestionAnswers>>> = flow {
 //        emit(Result.success<List<QuestionAnswers>>(dao.getAll()))

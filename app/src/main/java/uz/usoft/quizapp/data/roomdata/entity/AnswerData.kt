@@ -12,5 +12,4 @@ data class AnswerData(
     val answerTranslateData: AnswerTranslateData,
     val correct: Boolean,
     val parentQuestionId: Int = 0
-
 )

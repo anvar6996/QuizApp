@@ -15,6 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import uz.usoft.quizapp.R
+import uz.usoft.quizapp.data.others.StaticValues
 import uz.usoft.quizapp.data.response.category.CategoryResponse
 import uz.usoft.quizapp.data.response.category.Data
 import uz.usoft.quizapp.databinding.ScreenLevelCategoryBinding
@@ -81,9 +82,10 @@ class CategoryScreen : Fragment(R.layout.screen_level_category) {
 
         adapterCategory.setListener {
             val bundle = Bundle()
-            bundle.putSerializable("value", it)
+//            bundle.putSerializable("value", it)
             showToast(it.answers.toString())
-            findNavController().navigate(R.id.action_drawerCategoryScreen_to_questionScreen, bundle)
+            StaticValues.questionAnswers = it
+            findNavController().navigate(R.id.action_drawerCategoryScreen_to_questionScreen)
         }
     }
 

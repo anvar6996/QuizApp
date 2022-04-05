@@ -27,7 +27,7 @@ data class Data(
                 stateShow
             ),
             createListAnswers(),
-            createListPhotos(), id, id
+            createListPhotos()
         )
     }
 

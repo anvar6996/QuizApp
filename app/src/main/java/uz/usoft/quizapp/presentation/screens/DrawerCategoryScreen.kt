@@ -94,8 +94,9 @@ class DrawerCategoryScreen : Fragment(R.layout.screen_drawer) {
 
         adapterCategory.setListener {
             val bundle = Bundle()
-            bundle.putSerializable("value", it)
-            findNavController().navigate(R.id.action_drawerCategoryScreen_to_questionScreen,bundle)
+//            bundle.putSerializable("value", it)
+            StaticValues.questionAnswers = it
+            findNavController().navigate(R.id.action_drawerCategoryScreen_to_questionScreen, bundle)
         }
     }
 

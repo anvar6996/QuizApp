@@ -22,10 +22,10 @@ interface TaskDao {
 
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertPhotos(data: PhotoData)
+    fun insertPhotos(data: List<PhotoData>)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertAnswerData(data: AnswerData)
+    fun insertAnswerData(data: List<AnswerData>)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
     fun insertForEdit(data: QuestionData)
