@@ -9,11 +9,11 @@ import java.io.Serializable
 
 data class Data(
     val answers: List<Answer>,
-    val category: Category?,
-    val description: Description?,
+    val category: Category,
+    val description: Description,
     val id: Int?,
     val photos: List<Photo>?,
-    val title: Title?,
+    val title: Title,
     val stateShow: Int = 0
 ) : Serializable {
 
@@ -21,9 +21,16 @@ data class Data(
         return QuestionAnswers(
             QuestionData(
                 id!!,
-                category!!.reformatToCategoryDate(),
-                description!!.reformatToQuestionDate(),
-                title!!.createQuestionTitleData(),
+                category.photo,
+                category.name.en,
+                category.name.uz,
+                category.name.ru,
+                description.en,
+                description.uz,
+                description.ru,
+                title.en,
+                title.uz,
+                title.ru,
                 stateShow
             ),
             createListAnswers(),

@@ -120,9 +120,9 @@ class QuestionsRepositoryImpl @Inject constructor(
 //        return CategoryResponse(list)
 //    }
 
-    private fun getValueNull(): Data {
-        return Data(emptyList(), null, null, null, null, null, 0)
-    }
+//    private fun getValueNull(): Data {
+//        return Data(emptyList(), )
+//    }
 
     private fun loadStateCategory(response: CategoryResponse): CategoryResponse {
         val arrayState1 = arrayOf(
@@ -199,7 +199,7 @@ class QuestionsRepositoryImpl @Inject constructor(
                 )
                 count++
             } else {
-                list.add(Data(emptyList(), null, null, null, null, null, 0))
+//                list.add(Data(emptyList(), null, null, null, null, null, 0))
             }
         }
         val levelResponse = CategoryResponse(list)

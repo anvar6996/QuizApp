@@ -19,15 +19,7 @@ import uz.usoft.quizapp.utils.scope
 class CategoryQuestionsAdapter :
     ListAdapter<QuestionAnswers, CategoryQuestionsAdapter.HistoryVH>(MyDifUtils) {
     private var itemListener: ((QuestionAnswers) -> Unit)? = null
-    var Arr1 = arrayOf(
-        0, 1, 1, 1, 0,
-        0, 1, 0, 1, 0,
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1,
-        0, 1, 0, 1, 0,
-        0, 1, 1, 1, 0
-    )
+
 
     object MyDifUtils : DiffUtil.ItemCallback<QuestionAnswers>() {
         override fun areItemsTheSame(
@@ -64,7 +56,7 @@ class CategoryQuestionsAdapter :
 
 //            if (value.stateShow == 1) {
             Glide.with(imageCategory.context)
-                .load(value.questionData.category.photo)
+                .load(value.questionData.categoryPhoto)
                 .override(300, 200)
                 .into(imageCategory)
             bind.imageCategory.visibility = View.VISIBLE

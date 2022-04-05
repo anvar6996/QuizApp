@@ -43,9 +43,10 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
         arguments?.let {
             val value = StaticValues.questionAnswers
 
+
 //            showToast(value.toString())
             val data = value.questionData
-            questionText.text = data.description.qRu
+            questionText.text = data.descriptionRu
             Glide.with(questionsImage.context)
                 .load(value.photos[0].path)
                 .override(300, 200)

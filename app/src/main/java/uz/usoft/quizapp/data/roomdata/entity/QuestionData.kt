@@ -6,11 +6,22 @@ import androidx.room.*
 data class QuestionData(
     @PrimaryKey
     val questionDataId: Int,
-    @Embedded("category_")
-    val category: CategoryResData,
-    @Embedded("desciption_")
-    val description: QuestionDesciprionData,
-    @Embedded("title_")
-    val title: QuestionTitleData,
+//    @Embedded("category_")
+    val categoryPhoto: String,
+
+//    val category: CategoryResData,
+    val categoryResEn: String,
+    val categoryResUz: String,
+    val categoryResRu: String,
+//    @Embedded("desciption_")
+//    val description: QuestionDesciprionData,
+    val descriptionEn: String,
+    val descriptionRu: String,
+    val descriptionUz: String,
+//    @Embedded("title_")
+//    val title: QuestionTitleData,
+    val titleEn: String,
+    val titleUz: String,
+    val titleRu: String,
     val stateShow: Int = 0
 )
