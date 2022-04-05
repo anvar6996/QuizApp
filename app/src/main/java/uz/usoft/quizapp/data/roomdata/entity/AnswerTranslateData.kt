@@ -6,7 +6,6 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @Entity(tableName = "translate_answer")
 data class AnswerTranslateData(
-
     val aEn: String,
     val aRu: String,
     val aUz: String,

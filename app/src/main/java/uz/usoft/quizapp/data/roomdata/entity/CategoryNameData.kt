@@ -6,10 +6,9 @@ import com.google.gson.annotations.SerializedName
 
 @Entity("name_category")
 data class CategoryNameData(
-
     val aEn: String,
     val aUz: String,
     val aRu: String,
     @PrimaryKey(autoGenerate = true)
-    val categoryNameData: Int=0
+    val categoryNameData: Int = 0
 )

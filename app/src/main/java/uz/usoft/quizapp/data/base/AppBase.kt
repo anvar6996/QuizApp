@@ -10,12 +10,12 @@ import uz.usoft.quizapp.data.roomdata.entity.*
 @Database(
     entities =
     [
-
         QuestionData::class,
         AnswerData::class,
         CategoryNameData::class,
         CategoryResData::class,
         PhotoData::class,
+        AnswerTranslateData::class,
         QuestionDesciprionData::class,
         QuestionTitleData::class,
     ], version = 4, exportSchema = true
