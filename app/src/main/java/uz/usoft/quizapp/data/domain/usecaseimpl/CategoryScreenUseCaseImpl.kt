@@ -3,6 +3,7 @@ package uz.usoft.quizapp.data.domain.usecaseimpl
 import kotlinx.coroutines.flow.Flow
 import uz.usoft.quizapp.data.domain.repository.QuestionsRepository
 import uz.usoft.quizapp.data.domain.usecase.CategoryScreenUseCase
+import uz.usoft.quizapp.data.others.AnswerPassedData
 import uz.usoft.quizapp.data.pref.MyPref
 import uz.usoft.quizapp.data.response.category.CategoryResponse
 import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
@@ -23,4 +24,5 @@ class CategoryScreenUseCaseImpl @Inject constructor(
     }
 
     override fun getPlay(): Flow<Result<List<QuestionAnswers>>> = repository.getPlay()
+    override fun getPassedData(): Flow<ArrayList<AnswerPassedData>> = repository.getPassed()
 }

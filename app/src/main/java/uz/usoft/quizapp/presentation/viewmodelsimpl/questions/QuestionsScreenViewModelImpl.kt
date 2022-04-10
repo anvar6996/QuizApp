@@ -9,6 +9,7 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.usoft.quizapp.data.domain.repository.QuestionsRepository
+import uz.usoft.quizapp.data.others.AnswerPassedData
 import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 import uz.usoft.quizapp.presentation.viewmodels.questions.QuestionsScreenViewModel
 import uz.usoft.quizapp.utils.eventValueFlow
@@ -44,6 +45,10 @@ class QuestionsScreenViewModelImpl @Inject constructor(private val repository: Q
                 errorFlow.emit(throwable.message.toString())
             }
         }.launchIn(viewModelScope)
+    }
+
+    override fun setPassed(id: String, correct: Boolean) {
+        repository.setPassed(AnswerPassedData(id.toInt(), correct))
     }
 
     override fun screenClose(id: String) {

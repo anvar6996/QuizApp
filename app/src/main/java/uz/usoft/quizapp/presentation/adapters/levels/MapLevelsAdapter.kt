@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import uz.usoft.quizapp.R
+import uz.usoft.quizapp.data.others.AnswerPassedData
 import uz.usoft.quizapp.data.response.map.MapLevelsResponseItem
 import uz.usoft.quizapp.databinding.ItemLelvelBinding
 import uz.usoft.quizapp.utils.scope
@@ -19,6 +20,7 @@ import uz.usoft.quizapp.utils.scope
 class MapLevelsAdapter :
     ListAdapter<MapLevelsResponseItem, MapLevelsAdapter.HistoryVH>(MyDifUtils) {
     private var itemListener: ((Int) -> Unit)? = null
+    val list = ArrayList<AnswerPassedData>()
 
     object MyDifUtils : DiffUtil.ItemCallback<MapLevelsResponseItem>() {
         override fun areItemsTheSame(
@@ -82,7 +84,7 @@ class MapLevelsAdapter :
     private fun getInvisible() = View.INVISIBLE
 
     private fun loadLevel(view: View) {
-        val textLevel=view.findViewById<TextView>(R.id.textLevel)
+        val textLevel = view.findViewById<TextView>(R.id.textLevel)
         val valueAnimator = ValueAnimator.ofInt(0, 75)
         valueAnimator.duration = 500
         valueAnimator.addUpdateListener {
@@ -93,7 +95,7 @@ class MapLevelsAdapter :
     }
 
     private fun loadLevelDouble(view: View) {
-        var textLevelDouble=view.findViewById<TextView>(R.id.textLevelDouble)
+        var textLevelDouble = view.findViewById<TextView>(R.id.textLevelDouble)
         val valueAnimator = ValueAnimator.ofInt(0, 75)
         valueAnimator.duration = 500
         valueAnimator.addUpdateListener {

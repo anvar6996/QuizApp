@@ -45,6 +45,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+//    configurations.all {
+//        exclude module: 'okhttp-ws'
+//    }
 }
 
 dependencies {
@@ -66,6 +69,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
 
 //    implementation 'com.google.android.gms:play-services-cast-framework:21.0.1'
+
 
 
 /**
@@ -162,6 +166,12 @@ dependencies {
 
 
     /**
+     * Blur
+     * */
+    implementation 'jp.wasabeef:blurry:4.0.1'
+
+
+    /**
      * Android room
      * */
 
@@ -179,15 +189,6 @@ dependencies {
 
 
     //Text animations
+    implementation 'com.github.gayanvoice:android-animations-kotlin:1.0.1'
 
-//    def htextview_version = "0.1.2"
-// as 3.0 use implementation
-//    implementation "com.hanks:htextview-base:$htextview_version"        // base library
-//    implementation "com.hanks:htextview-fall:$htextview_version"        // optional
-//    implementation "com.hanks:htextview-fade:$htextview_version"        // optional
-//    implementation "com.hanks:htextview-line:$htextview_version"        // optional
-//    implementation "com.hanks:htextview-rainbow:$htextview_version"     // optional
-//    implementation "com.hanks:htextview-typer:$htextview_version"       // optional
-//    implementation "com.hanks:htextview-scale:$htextview_version"       // optional
-//    implementation "com.hanks:htextview-evaporate:$htextview_version" // base library
 }

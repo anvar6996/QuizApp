@@ -28,6 +28,12 @@ class DrawerCategoryScreen : Fragment(R.layout.screen_drawer) {
     private val adapterCategory = CategoryQuestionsAdapter()
     private val viewModel: CategoryScreenViewModel by viewModels<CategoryScreenViewModelImpl>()
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        viewModel.getPassedData()
+    }
+
     @SuppressLint("WrongConstant")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = bind.scope {
         super.onViewCreated(view, savedInstanceState)
@@ -39,8 +45,17 @@ class DrawerCategoryScreen : Fragment(R.layout.screen_drawer) {
                 viewModel.getQuestions(id.toString())
             }
         }
-        bind.include.menuIcon.setOnClickListener {
+
+//        viewModel.successPassedFlow.onEach {
+//            adapterCategory.list = it
+//            showToast(it.size.toString())
+//        }.launchIn(lifecycleScope)
+        showToast(StaticValues.counter.toString())
+        bind.include.menu.setOnClickListener {
             drawerLayout.openDrawer(Gravity.START)
+        }
+        bind.include.back.setOnClickListener {
+            findNavController().popBackStack()
         }
         drawerNavView.setNavigationItemSelectedListener {
             when (it.itemId) {

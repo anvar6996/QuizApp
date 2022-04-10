@@ -17,15 +17,7 @@ import uz.usoft.quizapp.utils.scope
 
 class AnswersAdapter : ListAdapter<Answer, AnswersAdapter.HistoryVH>(MyDifUtils) {
     private var itemListener: ((Answer) -> Unit)? = null
-    var Arr1 = arrayOf(
-        0, 1, 1, 1, 0,
-        0, 1, 0, 1, 0,
-        1, 1, 1, 1, 1,
-        1, 0, 0, 0, 1,
-        1, 1, 1, 1, 1,
-        0, 1, 0, 1, 0,
-        0, 1, 1, 1, 0
-    )
+
 
     object MyDifUtils : DiffUtil.ItemCallback<Answer>() {
         override fun areItemsTheSame(

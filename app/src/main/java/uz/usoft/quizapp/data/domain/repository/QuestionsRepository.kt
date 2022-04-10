@@ -1,6 +1,7 @@
 package uz.usoft.quizapp.data.domain.repository
 
 import kotlinx.coroutines.flow.Flow
+import uz.usoft.quizapp.data.others.AnswerPassedData
 import uz.usoft.quizapp.data.response.category.CategoryResponse
 import uz.usoft.quizapp.data.response.map.MapLevelsResponse
 import uz.usoft.quizapp.data.roomdata.entity.QuestionData
@@ -11,6 +12,7 @@ interface QuestionsRepository {
     fun getLevel(id: String): Flow<Result<List<QuestionAnswers>>>
     fun getPlay(): Flow<Result<List<QuestionAnswers>>>
     fun getLevelQuestions(): Flow<Result<MapLevelsResponse>>
-//    fun setPassed(): Flow<Unit>
+    fun setPassed(data: AnswerPassedData)
+    fun getPassed(): Flow<ArrayList<AnswerPassedData>>
 //    fun getPassed(): Flow<Result<String>>
 }

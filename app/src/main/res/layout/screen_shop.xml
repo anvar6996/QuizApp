@@ -72,12 +72,126 @@
         app:layout_constraintTop_toTopOf="@id/startsCount" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/mob"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/mob"
+        app:layout_constraintHeight_percent="0.2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/topBg"
+        app:layout_constraintTop_toBottomOf="@id/time"
         tools:ignore="ContentDescription" />
+
+
+    <ImageView
+        android:id="@+id/white_bg"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:src="@drawable/bg_shop_grey"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mob"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/addHeard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/ic_1_heard"
+        app:layout_constraintBottom_toTopOf="@id/viewLine"
+        app:layout_constraintLeft_toLeftOf="@id/white_bg"
+        app:layout_constraintRight_toLeftOf="@id/addHour"
+        app:layout_constraintTop_toTopOf="@id/white_bg" />
+
+
+    <ImageView
+        android:id="@+id/addHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_1_hour_add"
+        app:layout_constraintBottom_toBottomOf="@id/addHeard"
+        app:layout_constraintLeft_toRightOf="@id/addHeard"
+        app:layout_constraintRight_toLeftOf="@id/addFiveHour"
+        app:layout_constraintTop_toTopOf="@id/addFiveHour" />
+
+
+    <ImageView
+        android:id="@+id/addFiveHour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_5_hour"
+        app:layout_constraintBottom_toBottomOf="@id/addHeard"
+        app:layout_constraintLeft_toRightOf="@id/addHour"
+        app:layout_constraintRight_toRightOf="@id/white_bg"
+        app:layout_constraintTop_toTopOf="@id/addHeard" />
+
+    <View
+        android:id="@+id/viewLine"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addHeard" />
+
+    <ImageView
+        android:id="@+id/doubleChanse"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_shop_double_shance"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/fiftyFifty"
+        app:layout_constraintTop_toBottomOf="@id/viewLine" />
+
+
+    <ImageView
+        android:id="@+id/fiftyFifty"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_margin="5dp"
+        android:src="@drawable/ic_shop_5050"
+        app:layout_constraintBottom_toBottomOf="@id/doubleChanse"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintLeft_toRightOf="@id/doubleChanse"
+        app:layout_constraintRight_toRightOf="@id/white_bg"
+        app:layout_constraintTop_toTopOf="@id/doubleChanse" />
+
+
+    <ImageView
+        android:id="@+id/reverseContext"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_"
+        android:layout_marginTop="5dp"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintLeft_toLeftOf="@id/doubleChanse"
+        app:layout_constraintRight_toRightOf="@id/doubleChanse"
+        app:layout_constraintTop_toBottomOf="@id/fiftyFifty" />
+
+
+    <ImageView
+        android:id="@+id/nextQuestions"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic__next_ques"
+        android:layout_marginTop="5dp"
+        app:layout_constraintHeight_percent="0.13"
+        app:layout_constraintLeft_toLeftOf="@id/fiftyFifty"
+        app:layout_constraintRight_toRightOf="@id/fiftyFifty"
+        app:layout_constraintTop_toBottomOf="@id/fiftyFifty" />
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/bg_pay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/reverseContext" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

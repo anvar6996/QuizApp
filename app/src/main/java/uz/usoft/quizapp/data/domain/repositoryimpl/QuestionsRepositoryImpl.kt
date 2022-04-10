@@ -9,12 +9,15 @@ import kotlinx.coroutines.flow.flowOn
 import uz.usoft.quizapp.data.api.QuestionsApi
 import uz.usoft.quizapp.data.base.TaskDao
 import uz.usoft.quizapp.data.domain.repository.QuestionsRepository
-import uz.usoft.quizapp.data.response.category.CategoryResponse
-import uz.usoft.quizapp.data.response.category.Data
+import uz.usoft.quizapp.data.others.AnswerPassedData
+import uz.usoft.quizapp.data.others.StaticValues
 import uz.usoft.quizapp.data.response.map.MapLevelsResponse
+import uz.usoft.quizapp.data.roomdata.entity.AnswerData
+import uz.usoft.quizapp.data.roomdata.entity.PhotoData
+import uz.usoft.quizapp.data.roomdata.entity.QuestionData
 import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
+import java.lang.StringBuilder
 import javax.inject.Inject
-import kotlin.random.Random
 
 class QuestionsRepositoryImpl @Inject constructor(
     private val api: QuestionsApi,
@@ -28,23 +31,36 @@ class QuestionsRepositoryImpl @Inject constructor(
     override fun getLevel(id: String): Flow<Result<List<QuestionAnswers>>> = flow {
         pref.level = id.toInt()
         val responce = api.getLevel(id)
-        dao.deleteTask()
         if (responce.isSuccessful) {
-            val list = responce.body()!!.createQuestionData()
-            list.forEach {
-                dao.insertQuestionData(it.questionData)
-                dao.insertPhotos(it.photos)
-                dao.insertAnswerData(it.answers)
-            }
-            emit(Result.success<List<QuestionAnswers>>(dao.getAll()))
+//            loadPassedQuestions()
+            val list = loadStateCategory(
+                responce.body()!!.createQuestionData() as ArrayList<QuestionAnswers>
+            )
+//            list.forEach {
+//                dao.insertQuestionData(it.questionData)
+//                dao.insertPhotos(it.photos)
+//                dao.insertAnswerData(it.answers)
+//            }
+            emit(Result.success<List<QuestionAnswers>>(list))
         } else {
             emit(Result.failure(Throwable(responce.errorBody().toString())))
         }
-    }.catch {
+    }.catch { exc ->
         val errorMessage = Throwable(this.toString())
-        emit(Result.failure(errorMessage))
+        emit(Result.failure(exception = exc))
     }.flowOn(Dispatchers.IO)
 
+    private fun loadPassedQuestions() {
+        if (pref.passedAnswers.isEmpty()) {
+            return
+        }
+        val value = pref.passedAnswers.split("#")
+        val list = ArrayList<AnswerPassedData>()
+        for (i in value.indices) {
+            val data = value[i].split("$")
+            list.add(AnswerPassedData(data[0].toInt(), data[1].toBoolean()))
+        }
+    }
 //    override fun getLevelForBase(): Flow<Result<List<QuestionAnswers>>> = flow {
 //        emit(Result.success<List<QuestionAnswers>>(dao.getAll()))
 //    }.catch {
@@ -56,7 +72,11 @@ class QuestionsRepositoryImpl @Inject constructor(
     override fun getPlay(): Flow<Result<List<QuestionAnswers>>> = flow {
         val responce = api.getLevel(pref.level.toString())
         if (responce.isSuccessful) {
-            emit(Result.success<List<QuestionAnswers>>(dao.getAll()))
+            loadPassedQuestions()
+            val list = loadStateCategory(
+                responce.body()!!.createQuestionData() as ArrayList<QuestionAnswers>
+            )
+            emit(Result.success<List<QuestionAnswers>>(list))
         } else {
             emit(Result.failure(Throwable(responce.errorBody().toString())))
         }
@@ -69,6 +89,8 @@ class QuestionsRepositoryImpl @Inject constructor(
         if (mapLevelsResponse == null) {
             val responce = api.getLevelsQuestions()
             if (responce.isSuccessful) {
+
+                mapLevelsResponse = responce.body()!!
                 emit(Result.success<MapLevelsResponse>(responce.body()!!))
             } else {
                 emit(Result.failure(Throwable(responce.errorBody().toString())))
@@ -81,50 +103,38 @@ class QuestionsRepositoryImpl @Inject constructor(
         emit(Result.failure(errorMessage))
     }.flowOn(Dispatchers.IO)
 
-//    override fun setPassed(): Flow<Unit> = flow {
-//
-//        emit(Result.success<Unit>(responce.body()!!))
-//
-//    }.catch {
-//        val errorMessage = Throwable("Sever bilan muammo bo'ldi")
-//        emit(Result.failure(errorMessage))
-//    }.flowOn(Dispatchers.IO)
-//    private fun savePassed(id:)
-//    override fun getPassed(): Flow<Result<String>> = flow {
-//        emit(Result.success<String>(mapLevelsResponse!!))
-//    }.catch {
-//        val errorMessage = Throwable("Sever bilan muammo bo'ldi")
-////        emit(Result.failure(errorMessage))
-//    }.flowOn(Dispatchers.IO)
+    override fun setPassed(data: AnswerPassedData) {
+        val passedData = pref.passedAnswers
+        val stringBuilder = StringBuilder()
+        stringBuilder.append(passedData).append(data.id).append("$").append(data.correct)
+            .append("#")
+        pref.passedAnswers = stringBuilder.toString()
+        StaticValues.counter.add(data)
+    }
 
 
-//    fun reformatResponse(array: CategoryResponse): CategoryResponse {
-//        var count = 5
-//        var helper = 0
-//        var counter = 5
-//        val list = ArrayList<Data>()
-//        for (i in 0 until array.data.size * 2) {
-//            if (count == 0) {
-//                count = 5
-//                counter--
-//            }
-//            if (counter > 0) {
-//                val value = array.data[helper]
-//                list.add(getValue(value))
-//                helper++
-//            } else {
-//                list.add(getValueNull())
-//            }
-//            count--
-//        }
-//        return CategoryResponse(list)
-//    }
+    override fun getPassed(): Flow<ArrayList<AnswerPassedData>> = flow {
+        val array = pref.passedAnswers.split("#")
+        if (array.isNotEmpty()) {
 
-//    private fun getValueNull(): Data {
-//        return Data(emptyList(), )
-//    }
+            val list = ArrayList<AnswerPassedData>()
+            for (i in array.indices) {
+                val data = array[i].split("$")
+               if(data.size==2)
+               {
+                   if (data[1] == "true") {
+                       list.add(AnswerPassedData(data[0].toInt(), true))
+                   } else {
+                       list.add(AnswerPassedData(data[0].toInt(), false))
+                   }
+               }
+            }
+            emit(list)
+        }
+    }.flowOn(Dispatchers.IO)
 
-    private fun loadStateCategory(response: CategoryResponse): CategoryResponse {
+
+    private fun loadStateCategory(response: ArrayList<QuestionAnswers>): ArrayList<QuestionAnswers> {
         val arrayState1 = arrayOf(
             0, 1, 1, 1, 0,
             0, 1, 0, 1, 0,
@@ -174,49 +184,59 @@ class QuestionsRepositoryImpl @Inject constructor(
             1, 1, 0, 1, 1
         )
         val stateList = ArrayList<Array<Int>>()
-        stateList.add(arrayState1)
-        stateList.add(arrayState2)
-        stateList.add(arrayState3)
-        stateList.add(arrayState4)
+//        stateList.add(arrayState1)
+//        stateList.add(arrayState2)
+//        stateList.add(arrayState3)
+//        stateList.add(arrayState4)
         stateList.add(arrayState5)
-        val myRandomValues = Random.nextInt(0, 4)
+//        val myRandomValues = Random.nextInt(0, 4)
 
         var count = 0
-        val list = ArrayList<Data>()
-        for (i in stateList.get(myRandomValues).indices) {
-            if (stateList.get(myRandomValues)[i] == 1 && count < response.data.size) {
-                val value = response.data.get(count)
-                list.add(
-                    Data(
-                        value.answers,
-                        value.category,
-                        value.description,
-                        value.id,
-                        value.photos,
-                        value.title,
-                        1
-                    )
-                )
+        val list = ArrayList<QuestionAnswers>()
+        for (i in stateList.get(0).indices) {
+            if (stateList.get(0)[i] == 1 && count < response.size) {
+                val value = response.get(count)
+                list.add(QuestionAnswers(i, value.questionData, value.answers, value.photos, 1))
                 count++
             } else {
-//                list.add(Data(emptyList(), null, null, null, null, null, 0))
+//                list.add(
+//                    QuestionAnswers(
+//                        -1,
+//                        getQuestionData(),
+//                        emptyList<AnswerData>(),
+//                        emptyList<PhotoData>(), 0
+//                    )
+//                )
+                list.add(
+                    QuestionAnswers(
+                        i,
+                        getQuestionData(),
+                        emptyList(),
+                        emptyList(), 0
+                    )
+                )
+
             }
         }
-        val levelResponse = CategoryResponse(list)
-        return levelResponse
+        return list
     }
 
-//    private fun networkToBase(response: CategoryResponse): CategoryData {
-//        return CategoryData(response)
-//    }
+    private fun getQuestionData(): QuestionData {
+        return QuestionData(
+            0,
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            0
+        )
+    }
 
 
 }
-
-
-/**
-
-
-
-
- * */

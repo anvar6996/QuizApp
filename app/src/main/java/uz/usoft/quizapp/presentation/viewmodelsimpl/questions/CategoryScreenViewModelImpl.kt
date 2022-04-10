@@ -3,10 +3,12 @@ package uz.usoft.quizapp.presentation.viewmodelsimpl.questions
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import uz.usoft.quizapp.data.domain.usecase.CategoryScreenUseCase
+import uz.usoft.quizapp.data.others.AnswerPassedData
 import uz.usoft.quizapp.data.response.category.CategoryResponse
 import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 import uz.usoft.quizapp.presentation.viewmodels.questions.CategoryScreenViewModel
@@ -20,7 +22,9 @@ class CategoryScreenViewModelImpl @Inject constructor(private val useCaseImpl: C
     CategoryScreenViewModel {
     override val errorFlow = eventValueFlow<String>()
     override val successFlow = eventValueFlow<List<QuestionAnswers>>()
+    override val successPassedFlow = eventValueFlow<ArrayList<AnswerPassedData>>()
     override val progressFlow = eventValueFlow<Boolean>()
+
 
     override fun getQuestions(id: String) {
         if (!isConnected()) {
@@ -63,6 +67,15 @@ class CategoryScreenViewModelImpl @Inject constructor(private val useCaseImpl: C
                 progressFlow.emit(false)
                 errorFlow.emit(throwable.message.toString())
             }
+        }.launchIn(viewModelScope)
+    }
+
+    override fun getPassedData() {
+        viewModelScope.launch {
+            progressFlow.emit(true)
+        }
+        useCaseImpl.getPassedData().onEach {
+            successPassedFlow.emit(it)
         }.launchIn(viewModelScope)
     }
 

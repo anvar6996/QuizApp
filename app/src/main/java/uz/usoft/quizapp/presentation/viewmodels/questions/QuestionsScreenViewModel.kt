@@ -12,5 +12,6 @@ interface QuestionsScreenViewModel {
     val liveDataScreenClose: MutableLiveData<Unit>
 
     fun getQuestions(id: String)
+    fun setPassed(id: String, correct: Boolean)
     fun screenClose(id: String)
 }

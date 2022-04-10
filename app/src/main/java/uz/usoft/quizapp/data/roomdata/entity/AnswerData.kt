@@ -11,5 +11,5 @@ data class AnswerData(
     @Embedded
     val answerTranslateData: AnswerTranslateData,
     val correct: Boolean,
-    val parentQuestionId: Int = 0
+//    val parentQuestionId: Int = 0
 )

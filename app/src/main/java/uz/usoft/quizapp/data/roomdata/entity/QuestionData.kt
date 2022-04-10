@@ -10,18 +10,18 @@ data class QuestionData(
     val categoryPhoto: String,
 
 //    val category: CategoryResData,
-    val categoryResEn: String,
-    val categoryResUz: String,
-    val categoryResRu: String,
+    val categoryResEn: String?,
+    val categoryResUz: String?,
+    val categoryResRu: String?,
 //    @Embedded("desciption_")
 //    val description: QuestionDesciprionData,
-    val descriptionEn: String,
-    val descriptionRu: String,
-    val descriptionUz: String,
+    val descriptionEn: String?,
+    val descriptionRu: String?,
+    val descriptionUz: String?,
 //    @Embedded("title_")
 //    val title: QuestionTitleData,
-    val titleEn: String,
-    val titleUz: String,
-    val titleRu: String,
+    val titleEn: String?,
+    val titleUz: String?,
+    val titleRu: String?,
     val stateShow: Int = 0
 )

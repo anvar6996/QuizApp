@@ -39,14 +39,21 @@
         app:layout_constraintVertical_bias="0.2" />
 
 
+    <ImageView
+        android:id="@+id/blurBg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
     <com.airbnb.lottie.LottieAnimationView
-        android:background="#80FFFFFF"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/circle_load"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/circle_load" />
+
+<!--    android:background="#80FFFFFF"-->
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

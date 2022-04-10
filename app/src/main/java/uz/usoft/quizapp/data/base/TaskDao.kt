@@ -10,16 +10,15 @@ import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 @Dao
 interface TaskDao {
 
-    @Transaction
-    @Query("SELECT * FROM questions")
-    fun getAll(): List<QuestionAnswers>
-
-    @Query("DELETE FROM questions")
-    fun deleteTask(): Int
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertQuestionData(data: QuestionData)
-
+//    @Transaction
+//    @Query("SELECT * FROM questions")
+//    fun getAll(): List<QuestionAnswers>
+//
+//    @Query("DELETE FROM questions")
+//    fun deleteTask(): Int
+//
+//    @Insert(onConflict = OnConflictStrategy.IGNORE)
+//    fun insertQuestionData(data: QuestionData)
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun insertPhotos(data: List<PhotoData>)

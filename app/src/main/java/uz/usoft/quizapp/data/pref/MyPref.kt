@@ -65,9 +65,9 @@ class MyPref @Inject constructor(private val context: Context) {
         }
         get() = pref.getBoolean("startScreen", false)
 
-    var passed: String
+    var passedAnswers: String
         set(value) {
-            pref.edit().putString("passed", value).apply()
+            pref.edit().putString("passedAnswers", value).apply()
         }
-        get() = pref.getString("passed", "")!!
+        get() = pref.getString("passedAnswers", "")!!
 }

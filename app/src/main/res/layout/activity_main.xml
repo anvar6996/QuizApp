@@ -10,3 +10,4 @@
     app:defaultNavHost="true"
     app:navGraph="@navigation/navigation_res"
     tools:context="uz.usoft.quizapp.MainActivity" />
+

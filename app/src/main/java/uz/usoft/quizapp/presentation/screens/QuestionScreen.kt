@@ -2,6 +2,7 @@ package uz.usoft.quizapp.presentation.screens
 
 import android.animation.ValueAnimator
 import android.os.Bundle
+import android.text.method.ScrollingMovementMethod
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -19,6 +20,7 @@ import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import dagger.hilt.android.AndroidEntryPoint
 import uz.usoft.quizapp.R
+import uz.usoft.quizapp.data.others.AnswerPassedData
 import uz.usoft.quizapp.data.others.StaticValues
 import uz.usoft.quizapp.data.roomdata.realationdata.QuestionAnswers
 import uz.usoft.quizapp.databinding.ScreenQuestionBinding
@@ -33,20 +35,21 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
     private val bind by viewBinding(ScreenQuestionBinding::bind)
     private var doubleChanseController = false
     private var countAnswerClick = 0
+    private var clickAnswerId: Int = -1
+    private var correct: Boolean = false
     private val viewModel: QuestionsScreenViewModel by viewModels<QuestionsScreenViewModelImpl>()
     private var mRewardedAd: RewardedAd? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) = bind.scope {
         super.onViewCreated(view, savedInstanceState)
-//        loadReward()
+        loadReward()
         arguments?.let {
             val value = StaticValues.questionAnswers
-
-
 //            showToast(value.toString())
             val data = value.questionData
             questionText.text = data.descriptionRu
+            questionText.movementMethod = ScrollingMovementMethod()
             Glide.with(questionsImage.context)
                 .load(value.photos[0].path)
                 .override(300, 200)
@@ -63,7 +66,6 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
             answerText2.setOnClickListener {
                 answerClick(value.answers[1].correct, bgAnswerLine2, answerCount2, answerText2)
                 searchCorrectAnswer(value)
-
             }
 
             answerText3.setOnClickListener {
@@ -102,27 +104,38 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
             doubleChanseController = false
         }
         if (controller) {
+            StaticValues.counter.add(
+                AnswerPassedData(
+                    StaticValues.questionAnswers.position, true
+                )
+            )
             imageView.setImageResource(R.drawable.bg_answer_correct)
             bind.animate.visibility = View.VISIBLE
             bind.animate.playAnimation()
-
             val value = bind.starsCount.text.toString().toInt()
             loadStars(value, value + 40)
             viewModel.screenClose("1")
+
         } else {
             if (!doubleChanseController) {
-                fullScreen()
+                var data = AnswerPassedData(
+                    StaticValues.questionAnswers.position, false
+                )
+                if (StaticValues.counter.contains(data)) {
+                    StaticValues.counter.add(data)
+                }
+
+                imageView.setImageResource(R.drawable.bg_answer_false)
                 bind.failAnimate.visibility = View.INVISIBLE
+
+                fullScreen()
                 bind.failAnimate.playAnimation()
                 if (mRewardedAd != null) {
                     mRewardedAd?.show(requireActivity()) {
-
                     }
                 }
             }
-            imageView.setImageResource(R.drawable.bg_answer_false)
         }
-
         textView.visibility = View.INVISIBLE
         textAnswer.setTextColor(resources.getColor(R.color.realWhite))
     }
@@ -140,6 +153,7 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
         if (doubleChanseController) {
             return@scope
         }
+        clickAnswerId = data.questionData.questionDataId
         for (i in 0 until data.answers.size) {
             if (data.answers[i].correct) {
                 if (i == 0) {
@@ -164,6 +178,7 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
         textView: TextView,
         textAnswer: TextView
     ) {
+        correct = true
         imageView.setImageResource(R.drawable.bg_answer_correct)
         textView.visibility = View.INVISIBLE
         textAnswer.setTextColor(resources.getColor(R.color.realWhite))
@@ -194,7 +209,7 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
 
             }
 
-            override fun onAdFailedToShowFullScreenContent(adError: AdError?) {
+            override fun onAdFailedToShowFullScreenContent(adError: AdError) {
 
             }
 
@@ -326,10 +341,12 @@ class QuestionScreen : Fragment(R.layout.screen_question) {
     private fun getVisible() = View.VISIBLE
     private fun getInvisible() = View.INVISIBLE
 
+
     private val screenCloseObserver = Observer<Unit>
     {
         findNavController().popBackStack()
     }
+
 }
 
 

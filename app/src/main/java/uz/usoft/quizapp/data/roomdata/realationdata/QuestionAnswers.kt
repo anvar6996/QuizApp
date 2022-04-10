@@ -5,6 +5,7 @@ import androidx.room.Relation
 import uz.usoft.quizapp.data.roomdata.entity.*
 
 data class QuestionAnswers(
+    val position: Int,
     @Embedded
     val questionData: QuestionData,
 
@@ -12,11 +13,14 @@ data class QuestionAnswers(
         parentColumn = "questionDataId",
         entityColumn = "parentQuestionId"
     )
+    @Embedded
     val answers: List<AnswerData>,
 
     @Relation(
         parentColumn = "questionDataId",
         entityColumn = "photoParentId"
     )
-    val photos: List<PhotoData>
+    @Embedded
+    val photos: List<PhotoData>,
+    val state: Int = 1
 )

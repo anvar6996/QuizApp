@@ -10,7 +10,6 @@ data class Photo(
 ) {
     fun reformatToPhotoData(): PhotoData {
         return PhotoData(
-            path, type, id
-        )
+            path, type,id)
     }
 }
